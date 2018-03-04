@@ -321,7 +321,7 @@ del {
     font-family: "Montserrat-Regular";
 }
 
-.page-content a:hover,,
+.page-content a:hover,
 .post-content a:hover,
 .page-content a:focus,
 .post-content a:focus,
@@ -646,7 +646,7 @@ a:hover, a:active, a:focus {
 .wp-caption-text {
     color: #707070;
     color: rgba(51, 51, 51, 0.7);
-    font-family: "Montserrat-Light"
+    font-family: "Montserrat-Light";
     font-size: 12px;
     font-size: 1.2rem;
     line-height: 1.5;
@@ -2016,7 +2016,7 @@ textarea {
     color: #707070;
     color: rgba(51, 51, 51, 0.7);
     display: block;
-    font-family: "Montserrat-Regular"
+    font-family: "Montserrat-Regular";
     font-size: 12px;
     font-size: 1.2rem;
     font-weight: 700;
@@ -2087,7 +2087,7 @@ textarea {
 @media (min-width: 992px) {
   .share .box-share ul li {
     height: 55px;
-    width: 220px;css/icons/
+    width: 220px;
   }
   .share .box-share ul .facebook a {
     background: url("css/icons/facebook.png") no-repeat;
