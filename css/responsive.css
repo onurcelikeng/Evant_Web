@@ -28,18 +28,18 @@
 		display:none
 	}
 	
-	.section-upcoming-events .section-content .info,
+	.events .section-content .info,
 	.section-calendar-events .section-content .tab-content .info{
 		padding:20px;
 	}
 	
-	.section-upcoming-events .section-content .info p,
+	.events .section-content .info p,
 	.section-calendar-events .section-content .tab-content .info p{
 		width:100%;
 		margin:0 0 5px;
 	}
 	
-	.section-upcoming-events .section-content .info .get-ticket,
+	.events .section-content .info .get-ticket,
 	.section-calendar-events .section-content .tab-content .info .get-ticket{
 		float:none;
 		width:auto;
@@ -244,23 +244,23 @@
 		display:none;
 	}
 	
-	.section-upcoming-events .section-content .info .get-ticket,
+	.events .section-content .info .get-ticket,
 	.section-calendar-events .section-content .tab-content .info .get-ticket{
 		font-size:10px;
 		padding:5px 10px
 	}
 	
-	.section-upcoming-events .section-content .info p,
+	.events .section-content .info p,
 	.section-calendar-events .section-content .tab-content .info p {
 		font-size:12px;
 	}
 	
-	.section-upcoming-events .section-content .date .day,
+	.events .section-content .date .day,
 	.section-calendar-events .section-content .tab-content .date .day{
 		font-size:20px;
 	}
 	
-	.section-upcoming-events .section-content .date,
+	.events .section-content .date,
 	.section-calendar-events .section-content .tab-content .date{
 		padding:10px;
 	}
@@ -452,7 +452,7 @@
 		width:auto;
 	}
 	
-	.section-upcoming-events .section-header p{
+	.events .section-header p{
 		width:68%;
 	}
 	
@@ -487,21 +487,21 @@
 		display:none
 	}
 	
-	.section-upcoming-events .section-header a{
+	.events .section-header a{
 		float:none;
 	}
 	
-	.section-upcoming-events .section-header p{
+	.events .section-header p{
 		width:100%;
 	}
 	
-	.section-upcoming-events .section-content ul li,
+	.events .section-content ul li,
 	.section-calendar-events .section-content .tab-content ul li{
 		width:100%;
 		margin:0 0 30px
 	}
 	
-	.section-upcoming-events .section-content ul li img,
+	.events .section-content ul li img,
 	.section-calendar-events .section-content .tab-content ul li img{
 		width:100%;
 		height:auto;
@@ -531,28 +531,28 @@
 		margin:0 0 30px
 	}
 	
-	.section-upcoming-events .section-content .date, 
+	.events .section-content .date, 
 	.section-calendar-events .section-content .tab-content .date{
 		padding:15px;
 	}
 	
-	.section-upcoming-events .section-content .date .day, 
+	.events .section-content .date .day, 
 	.section-calendar-events .section-content .tab-content .date .day{
 		font-size:30px;
 	}
 	
-	.section-upcoming-events .section-content .info, 
+	.events .section-content .info, 
 	.section-calendar-events .section-content .tab-content .info{
 		padding: 50px 20px 25px;	
 	}
 	
-	.section-upcoming-events .section-content .info p, 
+	.events .section-content .info p, 
 	.section-calendar-events .section-content .tab-content .info p{
 		font-size:16px;
 		width:auto;
 	}
 	
-	.section-upcoming-events .section-content .info .get-ticket, 
+	.events .section-content .info .get-ticket, 
 	.section-calendar-events .section-content .tab-content .info .get-ticket{
 		font-size: 12px;
 		padding:10px 15px;
@@ -594,7 +594,7 @@
 		padding:70px 15px;
 	}
 	
-	.section-upcoming-events {
+	.events {
 		padding: 70px 15px 35px;
 	}
 	
@@ -773,11 +773,11 @@
 /* width 480px */
 @media screen and (max-width: 30em) {
 	
-	.section-upcoming-events .section-content .info p{
+	.events .section-content .info p{
 		width:100%;
 	}
 	
-	.section-upcoming-events .section-content .info .get-ticket{
+	.events .section-content .info .get-ticket{
 		float:none;
 	}
 	
