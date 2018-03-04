@@ -126,52 +126,6 @@ body{
 	z-index:9999;
 }
 
-.header #site-navigation .cart a{
-	background-color: #f89406; 
-	background-size:25px 23px!important;
-	border:1px solid #f89406;
-}
-
-.header #site-navigation .cart i.fa-opencart{
-	position: absolute;
-	z-index: 2;
-	margin: 14px 0 0 46px;
-	color:#fff;
-	font-size:20px;
-}
-
-.mobile-cart{
-	position:absolute;
-	right:60px;
-	bottom:0;
-	display:none;
-}
-
-.mobile-cart a{	
-	font-size:15px;
-	line-height:20px;
-	text-transform:uppercase;
-	color:#fff;
-	border:1px solid #f89406;
-	border-radius:20px;
-	margin:6px 0;
-	padding:7px 20px!important;
-	font-family: "Montserrat-Light";
-	width:90px;
-	position:relative;
-	display:block;
-}
-
-.mobile-cart a:before{
-	display:block;
-	content: "\f23d";
-	font-family: 'FontAwesome';
-	position:absolute;
-	top:7px;
-	right:20px;
-	font-size:18px
-}
-
 #site-navigation{
 	margin:0;
 }
@@ -191,31 +145,6 @@ body{
 #site-navigation .nav > li > a:hover {
     background: none;
     text-decoration: none;
-}
-
-#site-navigation .cart{
-	margin:0 0 0 20px;
-}
-
-#site-navigation .cart a{
-	border:1px solid #ff6600;
-	border-radius:20px;
-	margin:6px 0;
-	padding:7px 20px!important;
-	font-family: "Montserrat-Light";
-	width:90px;
-	background-size:25px 23px!important;
-	position:relative;
-}
-
-#site-navigation .cart a:before{
-	display:block;
-	content: "\f23d";
-	font-family: 'FontAwesome';
-	position:absolute;
-	top:7px;
-	right:20px;
-	font-size:18px
 }
 
 .closecanvas{
@@ -275,55 +204,6 @@ body{
 	font-family: "Montserrat-Light";
 	margin:0 0 45px;
 }
-
-.hero .hero-content .hero-search{
-	margin:0 0 45px;
-}
-
-.hero .hero-content .hero-search input[type="text"]{
-	border:2px solid #fff;
-	padding: 25px 80px 25px 45px;
-	color:#fff;
-	font-size:22px;
-	font-family: "Montserrat-Light";
-	width:710px;
-	background:rgba(240,243,243, 0.2) url(../images/search.png)no-repeat 93% center;
-	border-radius:50px;
-	margin:0 auto;
-}
-
-.hero .hero-content .hero-search input[type="text"]::-webkit-input-placeholder{
-	color: #fff;
-}
-.hero .hero-content .hero-search input[type="text"]::-moz-placeholder{
-	color: #fff;
-}
-
-.hero .hero-content .hero-search input[type="text"]:-ms-input-placeholder{
-	color: #fff;
-}
-
-.hero .hero-content .hero-search input[type="text"]:-moz-placeholder{ 
-	color: #fff;
-}
-
-.hero .hero-location p{
-	color:#fff;
-	font-size:15px;
-}
-
-.hero .hero-location p i{
-	margin:0 5px;
-}
-
-.hero .hero-location p a{
-	font-size:12px;
-	opacity:.6;
-	text-decoration:underline;
-	color:#fff;
-	margin:0 5px;
-}
-
 
 /*--------------------------------------------------------------
 	Events
@@ -697,44 +577,6 @@ body{
 	text-transform:uppercase;
 	font-family: "Montserrat-Regular";
 }
-
-
-/*--------------------------------------------------------------
-	Event By Category
---------------------------------------------------------------*/
-.section-featured-header.all-sports-events{
-	min-height:322px;
-	background: url(../images/page-featured-img-category.jpg) no-repeat center center;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	position:relative;
-}
-
-.section-featured-header.all-sports-events:before{
-	content: "";
-	background: url(../images/overlay.png);
-	position:absolute;
-	top:0;
-	bottom:0;
-	right:0;
-	left:0;
-}
-
-.section-featured-header.all-sports-events .section-content h1{
-	font-size:40px;
-	margin:0;
-	color:#fff;
-	font-family: "Montserrat-Regular";
-}
-
-.section-featured-header.all-sports-events .section-content{
-	padding:140px 0 150px;
-	text-align:left;
-	position:relative
-}
-
 
 /*--------------------------------------------------------------
 	Site Footer
