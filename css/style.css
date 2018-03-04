@@ -1,52 +1,3 @@
-
-/*--------------------------------------------------------------
->>> TABLE OF CONTENTS:
-----------------------------------------------------------------
-> Font Face
-> Site Header
-> Body
-> Home Page
-	> Hero 1
-	> Hero 2
-	> Hero 3
-	> Section Today's Schedule
-	> Section Upcoming Events
-	> Section Calendar Events
-	> Section Event Category
-	> Section Recent Videos
-	> Section Ticket Count
-	> Section Call To Action
-	> Section Latest News/Tweets
-	> Section Video Parallax
-	> Section Sponsors
-	> Section Newsletter
-> Page Default
-> Search Result Page
-> Select Seat Page
-> Select Seat Page v2
-> Order Detail Page
-> Review Order Page
-> Download Ticket Page 
-> Error	404: Page Not Found
-> Event By Category
-> Order Tickets Without Seat
-> Payment Method
-> Artist Page
-> Gallery 
-> Event Single
-> Full Event Schedule
-> Site Footer
-
-
-  
-
---------------------------------------------------------------*/
-
-
-/*--------------------------------------------------------------
-	Font Face
-------------------------------------------------------------- */
-
 @font-face {
   font-family: "Montserrat-Regular";
   src: url("../fonts/Montserrat-Regular.otf");
@@ -80,7 +31,6 @@
 /*--------------------------------------------------------------
 	Body
 --------------------------------------------------------------*/
-
 body{
 	font-family: "Montserrat-Regular";
 }
@@ -98,15 +48,6 @@ body{
 /*--------------------------------------------------------------
 	Site Header
 --------------------------------------------------------------*/
-
-.site-branding{
-	padding:0;
-}
-
-.site-title{
-	margin:0;
-}	
-
 .site-title a img{
 	max-height:35px;
 	width:auto;
@@ -340,7 +281,6 @@ body{
 /*--------------------------------------------------------------
 	Hero 1
 ------------------------------------------------------------- */
-
 .hero-1{
 	position:relative;
 	background:url(../images/hero-1-img.jpg) no-repeat center center;
@@ -1889,17 +1829,11 @@ body{
 
 .section-newsletter{
 	padding:90px 0;
-	background:url(../images/newsletter.jpg) no-repeat center center;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
 	position:relative
 }
 
 .section-newsletter:before{
 	content: "";
-	background:rgba(255, 102, 0, .9);
 	position:absolute;
 	top:0;
 	bottom:0;
