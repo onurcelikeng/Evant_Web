@@ -26,7 +26,6 @@
   src: url("../fonts/Champagne-Limousines.ttf");
 }
 
-
 /*--------------------------------------------------------------
 	Body
 --------------------------------------------------------------*/
@@ -36,173 +35,81 @@ body{
 
 /*--------------------------------------------------------------
 	Site Header
---------------------------------------------------------------*/
-.site-title a img{
-	max-height:35px;
-	width:auto;
-}
-
-.top-header{
-	padding:10px 0;
-	background:#161616;
-}
-
-.top-header ul{
-	margin:0;
-	padding:0;
-	list-style:none;
-}	
-
-.top-header ul li{
-	float:left
-}
-
-.top-header .top-right{
-	float:right;
-}
-
-.top-header .top-right ul li{
-	border-left:2px solid #b3b3b3;
-}
-
-.top-header .top-right ul li:first-child{
-	border:none
-}
-
-.top-header .top-right ul li:first-child a{
-	color:#ff6600;
-	font-weight:700;
-}
-
-.top-header .top-right ul li a{
-	color:#b3b3b3;
-	font-size:12px;
-	line-height:12px;
-	text-decoration:none;
-	text-transform:uppercase;
-	padding:0 10px;
-	display:block;
-	font-family: 'Open Sans', sans-serif;
-	background:none;
-}
-
-.main-header{
-	padding:20px 0;
-	position:relative;
-	z-index:99999;
-}
-
-.fix-header .main-header .container{
-	position:relative
-}
-
-.fix-header .main-header .container:after{
-	content: "";
-	height:1px;
-	width:100%;
-	position:absolute;
-	bottom:-20px;
-	left:0;
-	right:0;
-	background:#fff
-}
-
-.main-header-bg{
-	background:#242424;
-	padding:20px 0;
-	-webkit-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.46);
-	-moz-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.46);
-	box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.46);
-	position:relative;
-	z-index:999;
-	border-bottom:none
-}
-
-.fix-header{
-	position:absolute;
-	top:0;
-	left:0;
-	right:0;
-	z-index:9999;
-}
-
-#site-navigation{
-	margin:0;
-}
-
-#site-navigation .navbar-collapse{
-	padding:0;
-}
-
-#site-navigation .nav li a{
-	font-size:15px;
-	text-transform:uppercase;
-	color:#fff;
-	padding:14px 15px;
-}
-
-#site-navigation .nav > li > a:focus, 
-#site-navigation .nav > li > a:hover {
-    background: none;
-    text-decoration: none;
-}
-
-.closecanvas{
-	display:none;
-}
-
-
-/*--------------------------------------------------------------
-	Hero
 ------------------------------------------------------------- */
-.hero{
+.site-header{
 	position:relative;
 	background:url(../images/hero-img.jpg) no-repeat center center;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
-	height:500px
+	height:500px;
 }
 
-.hero:after{
+.site-header:after{
 	content: "";
 	position:absolute;
 	left:0;
 	right:0;
 	top:0;
 	bottom:0;
-	background: rgba(217,30,24,.9);
-	background: -moz-linear-gradient(-45deg,  rgba(217,30,24,.9) 0%, rgba(255,102,0,.9) 100%); 
-	background: -webkit-linear-gradient(-45deg,  rgba(217,30,24,.9) 0%,rgba(255,102,0,.9) 100%);
-	background: linear-gradient(135deg,  rgba(217,30,24,.9) 0%,rgba(255,102,0,.9) 100%); 
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d91e18', endColorstr='#ff6600',GradientType=1 ); 
+	background: rgba(255,102,0,.9);
 }
 
-.hero .hero-content {
+.site-header .site-header-content {
     height: auto;
     left: 0;
     margin: auto;
     position: absolute;
     right: 0;
     text-align: center;
-    top: 40%;
+    top: 50%;
     width: 60%;
     z-index: 900;
 }
 
-.hero .hero-content .hero-title{
+.site-header .site-header-content .site-header-title{
 	font-size:36px;
 	color:#fff;
 	font-family: "Montserrat-Regular";
 	margin:0 0 20px
 }
 
-.hero .hero-content .hero-caption{
-	font-size:26px;
-	color:#fff;
-	font-family: "Montserrat-Light";
-	margin:0 0 45px;
+/*--------------------------------------------------------------
+	Event Add
+------------------------------------------------------------- */
+.section-add{
+	padding:70px 0 35px;
+	background:#fff;
+}
+
+.section-add .section-header {
+	overflow:hidden;
+	margin:0 0 40px;
+	padding:0 0 0 25px;
+}
+
+.section-add .section-header h2{
+	font-size:22px;
+	line-height:22px;
+	color:#373737;
+	text-transform:uppercase;
+	font-family: 'Open Sans', sans-serif;
+	display:block;
+	margin:0 0 25px;
+	font-weight:700;
+	position:relative;
+}
+
+.section-add .section-header h2:before{
+	display:block;
+	width:5px;
+	height:16px;
+	content: "";
+	position:absolute;
+	left:-25px;
+	top:4px;
+	background:#ff6600;
 }
 
 /*--------------------------------------------------------------
@@ -242,75 +149,10 @@ body{
 	background:#ff6600;
 }
 
-.events .section-header p{
-	color:#6f6f6f;
-	font-size:13px;
-	font-family: "Montserrat-Light";
-	line-height:22px;
-	padding:0 2px;
-	float:left;
-	width:70%;
-}
-
-.events .section-header a{
-	color:#ff6600;
-	border:1px solid #ff6600;
-	background:#fff;
-	display:inline-block;
-	text-decoration:none;
-	float:right;
-	font-size:12px;
-	font-family: "Montserrat-Light";
-	padding:13px 25px;
-	border-radius:20px;
-	text-transform:uppercase;
-	font-weight:300;
-}
-
-.events .section-header a:hover{
-	background:#ff6600;
-	color:#fff
-}
-
 .events .section-content ul li{
 	width:33.333333%;
 	float:left;
 	position:relative;
-}
-
-.events .section-content .date{
-	padding:15px;
-	background:rgba(36,36,36, 0.8);
-	position:absolute;
-	top:0;
-	left:20px;
-	text-align:center;
-	text-transform:uppercase;
-	color:#fff;
-}
-
-.events .section-content .date a{
-	color:#fff
-}
-
-.events .section-content .date .day{
-	font-size:30px;
-	display:block;
-	font-family: "Montserrat-Regular";
-	margin:0 0 5px;
-}
-
-.events .section-content .date .month{
-	font-size:10px;
-	display:block;
-	font-family: "Montserrat-Light";
-	margin:0 0 5px;
-}
-
-.events .section-content .date .year{
-	font-size:10px;
-	display:block;
-	font-family: "Montserrat-Light";
 }
 
 .events .section-content .info{
@@ -319,10 +161,16 @@ body{
 	bottom:0;
 	left:0;
 	right:0;
-	background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(253,253,253,0) 1%, rgba(28,28,28,1) 100%); 
-	background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(253,253,253,0) 1%,rgba(28,28,28,1) 100%);
-	background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(253,253,253,0) 1%,rgba(28,28,28,1) 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#1c1c1c',GradientType=0 )
+}
+
+.events .section-content .overlay{
+	padding:50px 20px 25px;
+	position:absolute;
+	bottom:0;
+	left:0;
+	right:0;
+	top:0;
+	background:rgba(0,0,0,0.6); 
 }
 
 .events .section-content .info p{
@@ -341,28 +189,11 @@ body{
 	font-family: "Montserrat-Light";
 }
 
-.events .section-content .info .get-ticket{
-	font-size: 12px;
-	line-height: 12px;
-	color:#fff;
-	padding:10px 15px;
-	background:#ff6600;
-	text-transform:uppercase;
-	font-family: 'Open Sans', sans-serif;
-	border:none;
-	border-radius:20px;
-	font-weight:700;
-	display:inline-block;
-	width:30%;
-	float:right;
-	text-align:center
+.events .container .event-detail-header{
+	float: left;
+	font-family: "Montserrat-Light";
+	margin: 20px, 20px, 20px, 20px;
 }
-
-.events .section-content .info .get-ticket:hover{
-	background:#fff;
-	color:#ff6600;
-}
-
 
 /*--------------------------------------------------------------
 	Section Event Category
@@ -401,100 +232,12 @@ body{
 	position:relative
 }
 
-.section-event-category .section-content ul li.category-1 a{
-	background: rgb(46,204,113,.9); 
-	background: -moz-linear-gradient(left,  rgba(46,204,113,.9) 0%, rgba(27,188,155,.9) 100%);
-	background: -webkit-linear-gradient(left,  rgba(46,204,113,.9) 0%,rgba(27,188,155,.9) 100%); 
-	background: linear-gradient(to right,  rgba(46,204,113,.9) 0%,rgba(27,188,155,.9) 100%); 
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2ecc71', endColorstr='#1bbc9b',GradientType=.9 );
+.section-event-category .section-content ul li.category a{
+	background: rgba(68,108,179,.9);
 }
 
-.section-event-category .section-content ul li.category-1:hover a{
-	background: rgb(46,204,113,.5); 
-	background: -moz-linear-gradient(left,  rgba(46,204,113,.5) 0%, rgba(27,188,155,.5) 100%);
-	background: -webkit-linear-gradient(left,  rgba(46,204,113,.5) 0%,rgba(27,188,155,.5) 100%); 
-	background: linear-gradient(to right,  rgba(46,204,113,.5) 0%,rgba(27,188,155,.5) 100%); 
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2ecc71', endColorstr='#1bbc9b',GradientType=.5 );
-}
-
-.section-event-category .section-content ul li.category-2 a{
-	background: rgb(192,57,43,.9); 
-	background: -moz-linear-gradient(left, rgba(192,57,43,.9) 0%, rgba(210,77,87,.9) 100%); 
-	background: -webkit-linear-gradient(left, rgba(192,57,43,.9) 0%,rgba(210,77,87,.9) 100%); 
-	background: linear-gradient(to right, rgba(192,57,43,.9) 0%,rgba(210,77,87,.9) 100%); 
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c0392b', endColorstr='#d24d57',GradientType=.9 );
-}
-
-.section-event-category .section-content ul li.category-2:hover a{
-	background: rgb(192,57,43,.5); 
-	background: -moz-linear-gradient(left, rgba(192,57,43,.5) 0%, rgba(210,77,87,.5) 100%); 
-	background: -webkit-linear-gradient(left, rgba(192,57,43,.5) 0%,rgba(210,77,87,.5) 100%); 
-	background: linear-gradient(to right, rgba(192,57,43,.5) 0%,rgba(210,77,87,.5) 100%); 
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c0392b', endColorstr='#d24d57',GradientType=.5);
-}
-
-.section-event-category .section-content ul li.category-3 a{
-	background: rgb(102,51,153,.9); 
-	background: -moz-linear-gradient(left,  rgba(102,51,153,.9) 0%, rgba(155,89,182,.9) 100%); 
-	background: -webkit-linear-gradient(left,  rgba(102,51,153,.9) 0%,rgba(155,89,182,.9) 100%); 
-	background: linear-gradient(to right,  rgba(102,51,153,.9) 0%,rgba(155,89,182,.9) 100%); 
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#663399', endColorstr='#9b59b6',GradientType=.9 );
-}
-
-.section-event-category .section-content ul li.category-3:hover a{
-	background: rgb(102,51,153,.5); 
-	background: -moz-linear-gradient(left,  rgba(102,51,153,.5) 0%, rgba(155,89,182,.5) 100%); 
-	background: -webkit-linear-gradient(left,  rgba(102,51,153,.5) 0%,rgba(155,89,182,.5) 100%); 
-	background: linear-gradient(to right,  rgba(102,51,153,.5) 0%,rgba(155,89,182,.5) 100%); 
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#663399', endColorstr='#9b59b6',GradientType=.5 );
-}
-
-.section-event-category .section-content ul li.category-4 a{
-	background: rgb(211,84,0,.9); 
-	background: -moz-linear-gradient(left,  rgba(211,84,0,.9) 0%, rgba(248,148,6,.9) 100%);
-	background: -webkit-linear-gradient(left,  rgba(211,84,0,.9) 0%,rgba(248,148,6,.9) 100%); 
-	background: linear-gradient(to right,  rgba(211,84,0,.9) 0%,rgba(248,148,6,.9) 100%); 
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d35400', endColorstr='#f89406',GradientType=.9 ); 
-}
-
-.section-event-category .section-content ul li.category-4:hover a{
-	background: rgb(211,84,0,.5); 
-	background: -moz-linear-gradient(left,  rgba(211,84,0,.5) 0%, rgba(248,148,6,.5) 100%);
-	background: -webkit-linear-gradient(left,  rgba(211,84,0,.5) 0%,rgba(248,148,6,.5) 100%); 
-	background: linear-gradient(to right,  rgba(211,84,0,.5) 0%,rgba(248,148,6,.5) 100%); 
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d35400', endColorstr='#f89406',GradientType=.5 ); 
-}
-
-.section-event-category .section-content ul li.category-5 a{
-	background: rgb(68,108,179,.9);
-	background: -moz-linear-gradient(left,  rgba(68,108,179,.9) 0%, rgba(89,171,227,.9) 100%); 
-	background: -webkit-linear-gradient(left,  rgba(68,108,179,.9) 0%,rgba(89,171,227,.9) 100%); 
-	background: linear-gradient(to right,  rgba(68,108,179,.9) 0%,rgba(89,171,227,.9) 100%); 
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#446cb3', endColorstr='#59abe3',GradientType=.9 ); 
-}
-
-.section-event-category .section-content ul li.category-5:hover a{
-	background: rgb(68,108,179,.5);
-	background: -moz-linear-gradient(left,  rgba(68,108,179,.5) 0%, rgba(89,171,227,.5) 100%); 
-	background: -webkit-linear-gradient(left,  rgba(68,108,179,.5) 0%,rgba(89,171,227,.5) 100%); 
-	background: linear-gradient(to right,  rgba(68,108,179,.5) 0%,rgba(89,171,227,.5) 100%); 
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#446cb3', endColorstr='#59abe3',GradientType=.5 ); 
-}
-
-.section-event-category .section-content ul li.category-6 a{
-	background: rgb(219,10,91,.9); 
-	background: -moz-linear-gradient(left,  rgba(219,10,91,.9) 0%, rgba(210,82,127,.9) 100%); 
-	background: -webkit-linear-gradient(left,  rgba(219,10,91,.9) 0%,rgba(210,82,127,.9) 100%); 
-	background: linear-gradient(to right,  rgba(219,10,91,.9) 0%,rgba(210,82,127,.9) 100%); 
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#db0a5b', endColorstr='#d2527f',GradientType=.9 ); 
-}
-
-.section-event-category .section-content ul li.category-6:hover a{
-	background: rgb(219,10,91,.5); 
-	background: -moz-linear-gradient(left,  rgba(219,10,91,.5) 0%, rgba(210,82,127,.5) 100%); 
-	background: -webkit-linear-gradient(left,  rgba(219,10,91,.5) 0%,rgba(210,82,127,.5) 100%); 
-	background: linear-gradient(to right,  rgba(219,10,91,.5) 0%,rgba(210,82,127,.5) 100%); 
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#db0a5b', endColorstr='#d2527f',GradientType=.5 ); 
+.section-event-category .section-content ul li.category:hover a{
+	background: rgba(68,108,179,.5);
 }
 
 .section-event-category .section-content ul li a{
@@ -525,11 +268,10 @@ body{
 	font-family: "Montserrat-Light";
 }
 
-
 /*--------------------------------------------------------------
 	Section Ticket Count
 ------------------------------------------------------------- */
-.section-stats{
+.section-statistics{
 	padding:100px 0;
 	background: url(../images/stats.jpg) no-repeat center center;
 	-webkit-background-size: cover;
@@ -539,7 +281,7 @@ body{
 	position:relative
 }
 
-.section-stats:before{
+.section-statistics:before{
 	content: "";
 	position:absolute;
 	top:0;
@@ -549,11 +291,11 @@ body{
 	background:rgba(36,36,36, 0.8)
 }
 
-.section-stats .section-content ul li{
+.section-statistics .section-content ul li{
 	text-align:center;
 }
 
-.section-stats .section-content ul li span{
+.section-statistics .section-content ul li span{
 	color:#fff;
 	display:block;
 	font-size:50px;
@@ -561,14 +303,14 @@ body{
 	font-family: "Montserrat-Regular";
 }
 
-.section-stats .section-content hr{
+.section-statistics .section-content hr{
 	background:#fff;
 	height:2px;
 	width:45px;
 	margin:30px auto;
 }
 
-.section-stats .section-content ul li p{
+.section-statistics .section-content ul li p{
 	color:#fff;
 	display:block;
 	font-size:19px;

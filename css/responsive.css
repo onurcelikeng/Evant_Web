@@ -41,76 +41,6 @@
 		overflow-x:hidden;
 	}
 	
-	.site-title > a{
-		position:relative;
-		z-index:999;
-	}
-
-	.navbar-offcanvas{
-		bottom:0;
-	}
-	
-	.closecanvas{
-		display:block!important;
-		background:none;
-		border:none;
-		color:#fff;
-		margin:20px 0 0;
-	}
-	
-	#site-navigation .navbar-right{
-		float:none!important;
-		margin:0!important
-	}
-	
-	#site-navigation .navbar-toggle{
-		background:rgba(247,249,252, 0.7);
-		border:2px solid #f7f9fc;
-		margin:6px 0;
-	}
-	
-	#site-navigation .navbar-toggle .icon-bar{
-		background:#fff;
-		transform:none!important;
-		opacity:1!important;
-	}
-	
-	#site-navigation .nav li a {
-		font-size: 14px;
-		padding: 10px 15px;
-		text-align:right
-	}
-	
-	.navbar-offcanvas{
-		background:#242424;
-		overflow:hidden;
-	}
-	
-	.navbar-header {
-        float: none;
-    }
-    .navbar-right {
-        float: none !important;
-    }
-    .navbar-toggle {
-        display: block;
-    }
-    .navbar-fixed-top {
-        top: 0;
-		border-width: 0 0 1px;
-    }
-    .navbar-nav {
-        float: none!important;
-        margin-top: 7.5px;
-    }
-    .navbar-nav>li {
-        float: none;
-    }
-    .navbar-nav>li>a {
-        padding-top: 10px;
-        padding-bottom: 10px;
-    }
-	
 	.hero .hero-content{
 		width:75%;
 		top:35%
@@ -133,75 +63,6 @@
 		padding:10px;
 	}
 
-	.section-latest .latest-news{
-		margin: 0 0 70px -15px
-	}
-	
-	.section-latest .latest-tweets{
-		margin: 0 0 0 -15px;
-	}
-	
-	.section-latest .latest-tweets .twitter-header .twitter-name {
-		float: left!important;
-		width: 70%!important; 
-	}
-	
-	.section-latest .latest-tweets .twitter-header .twitter-btn {
-		text-align: right!important;
-	}
-	
-	.section-artist-content .artist-event-footer{
-		margin:30px 0 35px;
-	}
-	
-	.section-artist-content .artist-details img{
-		width:100%;
-	}
-	
-	.section-artist-content .related-artist .related-artist-list .related-artist-img a{
-		display:inline-block;
-	}
-	
-	.section-artist-content .related-artist .related-artist-list .related-artist-item{
-		width:49%;
-		display:inline-block;
-		vertical-align:top;
-	}
-	
-	.section-refine-search .location,
-	.section-refine-search .keyword,
-	.section-refine-search .month{
-		margin:0 0 30px
-	}
-	
-	.section-calendar-events .container,
-	.section-full-events-schedule .container{
-		width:90%;
-		margin:0 auto;
-	}
-	
-	.section-search-content .search-filter{
-		margin:0 0 35px;
-	}
-	
-	.section-event-single-header h1{
-		float:none;
-		display:block;
-		text-align:center;
-		margin:0 0 20px;
-	}
-	
-	.section-event-single-header .ticket-purchase{
-		float:none;
-		text-align:center;
-		width:auto;
-		margin:0 auto;
-	}
-	
-	.section-event-single-content .event-info .event-info-img{
-		margin:0 0 35px;
-	}
-	
 	.top-footer{
 		text-align:center
 	}
@@ -270,7 +131,7 @@
 		float:left;
 	}
 	
-	.section-stats .section-content ul li{
+	.section-statistics .section-content ul li{
 		margin:0 0 30px
 	}
 	
@@ -324,32 +185,5 @@
 	.section-event-category .section-content ul li{
 		float: none;
 		width: 100%;
-	}
-	
-	.site-title > a > img{
-		width:120px;
-		height:auto;
-		margin:0 0 8px
-	}
-	
-	.top-header ul li{
-		float:none;
-		display:inline-block;
-		margin-bottom:5px!important;
-	}
-	
-	.top-header ul li a{
-		margin-right:-4px;
-	}
-
-	.top-header .top-right{
-		float:none;
-		width:100%;
-		display:block;
-		text-align:center;
-	}
-
-	.top-header .top-right{
-		display: none;
 	}
 }
