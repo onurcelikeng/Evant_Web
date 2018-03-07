@@ -10,15 +10,6 @@
 /* 992px and 1200px */
 @media only screen and (min-width: 62px) and (max-width: 75em) {
 	
-	#site-navigation .nav li a {
-		font-size: 14px;
-		padding:14px 10px;
-	}
-	
-	#site-navigation .cart {
-		margin: 0 0 0 10px;
-	}
-	
 	.events .section-content .info{
 		padding:20px;
 	}
@@ -32,6 +23,10 @@
 		float:none;
 		width:auto;
 	}
+
+	.events .event-detail-header{
+		width: 100%;
+	}
 }
 
 /* width: 991px; */
@@ -41,26 +36,13 @@
 		overflow-x:hidden;
 	}
 	
-	.hero .hero-content{
+	.site-header .site-header-content{
 		width:75%;
 		top:35%
-	}
-
-	.events .section-content .info .get-ticket{
-		font-size:10px;
-		padding:5px 10px
 	}
 	
 	.events .section-content .info p{
 		font-size:12px;
-	}
-	
-	.events .section-content .date .day{
-		font-size:20px;
-	}
-	
-	.events .section-content .date{
-		padding:10px;
 	}
 
 	.top-footer{
@@ -74,13 +56,17 @@
 	.main-header .col-md-9{
 		margin:-47px 0 0;
 	}
+
+	.events .event-detail-header{
+		width: 68%;
+	}
 	
 }
 
 /* width 768px */
 @media screen and (max-width: 48em) {
 	
-	.hero .hero-content{
+	.site-header .site-header-content{
 		width:85%;
 	}
 	
@@ -101,14 +87,6 @@
 		width:100%;
 		height:auto;
 	}
-
-	.events .section-content .date{
-		padding:15px;
-	}
-	
-	.events .section-content .date .day{
-		font-size:30px;
-	}
 	
 	.events .section-content .info{
 		padding: 50px 20px 25px;	
@@ -118,12 +96,9 @@
 		font-size:16px;
 		width:auto;
 	}
-	
-	.events .section-content .info .get-ticket{
-		font-size: 12px;
-		padding:10px 15px;
-		width:auto;
-		float:right;
+
+	.events .event-detail-header{
+		width: auto;
 	}
 	
 	.section-event-category .section-content ul li{
@@ -143,18 +118,6 @@
 		padding: 35px 15px 40px;
 	}
 	
-	.top-header {
-		padding: 10px 15px;
-	}
-	
-	.top-header .top-right ul li:last-child a{
-		padding:0 0 0 10px;
-	}
-	
-	.main-header .site-branding{
-		padding:0 15px;
-	}
-	
 	.section-event-category .section-content ul li a{
 		font-size:20px
 	}
@@ -172,11 +135,7 @@
 		width:100%;
 	}
 	
-	.events .section-content .info .get-ticket{
-		float:none;
-	}
-	
-	.hero .hero-content{
+	.site-header .site-header-content{
 		width:100%;
 		padding:15px;
 		top:25%;
@@ -184,6 +143,10 @@
 	
 	.section-event-category .section-content ul li{
 		float: none;
+		width: 100%;
+	}
+
+	.events .event-detail-header{
 		width: 100%;
 	}
 }
