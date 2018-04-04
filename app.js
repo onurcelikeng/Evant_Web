@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 
 app.use(compression());
 
-var routes = require('./api/routes/accountRoute');
+var routes = require('./api/routes');
 routes(app);
 
 var indexHtml;
