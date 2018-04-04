@@ -25,18 +25,18 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>                        
 					</button>
-					<a class="navbar-brand" href="#home"><img width="65px" src="images/logo.png"></a>
+					<a class="navbar-brand" href="#home"><img src="images/logo.png"></a>
 				</div>
 				<div class="collapse navbar-collapse" id="navbar">
 					<ul class="nav navbar-nav">
-						<li><a style="font-size:17px" href="#events">Events</a></li>
-						<li><a style="font-size:17px" href="#categories">Categories</a></li>
-						<li><a style="font-size:17px" href="#counts">Statistics</a></li>
-						<li style="display: none" id="addEventItem"><a style="font-size:17px" href="#addEvent">Add Event</a></li>
+						<li><a href="#events">Events</a></li>
+						<li><a href="#categories">Categories</a></li>
+						<li><a href="#counts">Statistics</a></li>
+						<li class="invisible" id="addEventItem"><a href="#addEvent">Add Event</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
-						<li><a style="font-size:17px" href="#signupModal" data-toggle="modal">Sign Up</a></li>
-						<li><a style="font-size:17px" href="#loginModal" data-toggle="modal">Login</a></li>
+						<li><a href="#signupModal" data-toggle="modal">Sign Up</a></li>
+						<li><a href="#loginModal" data-toggle="modal">Login</a></li>
 					</ul>
 				</div>
 			</div>
@@ -144,27 +144,27 @@
 						<ul class="row clearfix">
 							<li class="category col-sm-4">
 								<img src="images/event-category-1.jpg" alt="image" class="img-rounded">
-								<a href="#"><span>Concerts</span></a>
+								<a href="#" onclick="return false;"><span>Concerts</span></a>
 							</li>
 							<li class="category col-sm-4">
 								<img src="images/event-category-2.jpg" alt="image">
-								<a href="#"><span>Sports</span></a>
+								<a href="#" onclick="return false;"><span>Sports</span></a>
 							</li>
 							<li class="category col-sm-4">
 								<img src="images/event-category-3.jpg" alt="image">
-								<a href="#"><span>Theaters</span></a>
+								<a href="#" onclick="return false;"><span>Theaters</span></a>
 							</li>
 							<li class="category col-sm-4">
 								<img src="images/event-category-4.jpg" alt="image">
-								<a href="#"><span>Parties</span></a>
+								<a href="#" onclick="return false;"><span>Parties</span></a>
 							</li>
 							<li class="category col-sm-4">
 								<img src="images/event-category-5.jpg" alt="image">
-								<a href="#"><span>Communities</span></a>
+								<a href="#" onclick="return false;"><span>Communities</span></a>
 							</li>
 							<li class="category col-sm-4">
 								<img src="images/event-category-6.jpg" alt="image">
-								<a href="#"><span>Classes</span></a>
+								<a href="#" onclick="return false;"><span>Classes</span></a>
 							</li>
 						</ul>
 					</div>
@@ -180,17 +180,17 @@
 					<div class="section-content">
 						<ul class="row clearfix">
 							<li class="col-sm-4">
-								<span class="count">598</span>
+								<span id="eventCount" class="count"></span>
 								<hr>
 								<p>Events</p>
 							</li>
 							<li class="col-sm-4">
-								<span class="count">16,173</span>
+								<span id="activeUserCount" class="count"></span>
 								<hr>
 								<p>Active User</p>
 							</li>
 							<li class="col-sm-4">
-								<span class="count">6</span>
+								<span id="categoryCount" class="count"></span>
 								<hr>
 								<p>Categories</p>
 							</li>
@@ -202,7 +202,7 @@
 
 		<!-- Add Event -->
 
-		<section id="addEvent" style="display:none" class="section-add">
+		<section id="addEvent" class="section-add invisible">
 			<div class="container">
 				<div class="row">
 					<div class="section-header">
@@ -272,7 +272,7 @@
 							<div class="checkbox">
 								<label><input type="checkbox"> Remember me</label>
 							</div>
-							<div style="text-align: right;">
+							<div class="modal-buttons">
 								<input type="button" class="btn btn-default" id="loginButton" value="Submit" onclick="login()"/>
 								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 							</div>
@@ -310,7 +310,7 @@
 							<div class="checkbox">
 								<label><input type="checkbox"> Remember me</label>
 							</div>
-							<div style="text-align: right;">
+							<div class="modal-buttons">
 								<input type="button" class="btn btn-default" id="registerButton" value="Submit" onclick="signup()"/>
 								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 							</div>
