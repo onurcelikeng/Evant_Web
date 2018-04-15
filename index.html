@@ -187,22 +187,38 @@
 					</div>
 					<div class="section-content">
 						<form>
-							<div class="form-group">
+							<div class="form-group col-md-6">
 								<label for="eventName">Event Name:</label>
 								<input type="text" class="form-control" id="eventName">
 							</div>
-							<div class="form-group">
-								<label for="loc">Location:</label>
-								<input type="text" class="form-control" id="loc">
+							<div class="form-group col-md-6">
+								<label for="latitude">Latitude:</label>
+								<input type="text" class="form-control" id="latitude">
 							</div>
-							<div class="form-group">
+							<div class="form-group col-md-6">
+								<label for="longitude">Longitude:</label>
+								<input type="text" class="form-control" id="longitude">
+							</div>
+							<div class="form-group col-md-6">
+								<label for="city">City:</label>
+								<input type="text" class="form-control" id="city">
+							</div>
+							<div class="form-group col-md-6">
+								<label for="town">Town:</label>
+								<input type="text" class="form-control" id="town">
+							</div>
+							<div class="form-group col-md-6">
+								<label for="date">Date:</label>
+								<input type="text" class="form-control" id="date">
+							</div>
+							<div class="form-group col-md-6">
 								<label for="pic">Picture:</label>
 								<input type="file" class="form-control" id="pic">
 							</div>
-							<div class="checkbox">
+							<div class="checkbox col-md-6">
 								<label><input type="checkbox">Private</label>
 							</div>
-							<button type="submit" class="btn btn-default alignright">Add</button>
+							<button type="submit" class="btn btn-default alignright" onclick="addEvent()">Add</button>
 						</form>
 					</div>
 				</div>
@@ -233,7 +249,7 @@
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<button type="button" class="close" data-dismiss="modal" onclick="closeLoginModal();">&times;</button>
 						<h4 class="modal-title">Login</h4>
 					</div>
 					<div class="modal-body">
@@ -251,7 +267,7 @@
 							</div>
 							<div class="modal-buttons">
 								<input type="button" class="btn btn-default" id="loginButton" value="Submit" onclick="login()"/>
-								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal" onclick="closeLoginModal();">Close</button>
 							</div>
 						</form>
 					</div>
@@ -263,7 +279,7 @@
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<button type="button" class="close" data-dismiss="modal" onclick="closeSignupModal()">&times;</button>
 						<h4 class="modal-title">Sign Up</h4>
 					</div>
 					<div class="modal-body">
@@ -289,7 +305,7 @@
 							</div>
 							<div class="modal-buttons">
 								<input type="button" class="btn btn-default" id="registerButton" value="Submit" onclick="signup()"/>
-								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal" onclick="closeSignupModal()">Close</button>
 							</div>
 						</form>
 					</div>
