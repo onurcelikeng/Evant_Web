@@ -1,4 +1,5 @@
 'use strict';
+var db = require('../../config/db');
 
 exports.getStatistics = function(req, res) {
     res.json({

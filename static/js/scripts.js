@@ -1,4 +1,5 @@
 getStatistics();
+getCategories();
 
 function login(){
     var email = document.getElementById("email").value;
@@ -60,6 +61,27 @@ function getStatistics() {
             document.getElementById("eventCount").innerHTML = res.data.events;
             document.getElementById("activeUserCount").innerHTML = res.data.activeUser;
             document.getElementById("categoryCount").innerHTML = res.data.categories;
+        }
+    }) 
+    .fail(function() {
+        console.log("error");
+    });
+}
+
+function getCategories() {
+    $.get("/categories")
+    .done(function(res) {
+        var content = '';
+        if(res.isSuccess) {
+            console.log(res)
+            $.each(res.data.categories, function(){
+                content += '<li class="category col-sm-4">'+
+                                '<img src="' + this.picture + '" alt="image" class="img-rounded">'+
+                                '<a href="#" onclick="return false;"><span>' + this.name + '</span></a>'+
+                            '</li>';
+
+                $('#categoryList').html(content);
+            })
         }
     }) 
     .fail(function() {

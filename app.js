@@ -5,11 +5,11 @@ var express = require('express'),
 
 var compression = require('compression');
 var fs = require('fs');
+var db = require('./config/db');
 
 app.use(express.static('static'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
 app.use(compression());
 
 var routes = require('./api/routes');
@@ -24,9 +24,16 @@ fs.readFile("index.html", "utf8", function (err, data) {
   }
   else {
     indexHtml = data;
-    app.listen(port, function () {
-			console.log('Evant RESTful API server started on: ' + port);
-		});
+    db.connect('mongodb://localhost:27017/evantdb', function(err) {
+      if (err) {
+        console.log('Unable to connect to Mongo.')
+        process.exit(1)
+      } else {
+        app.listen(port, function () {
+          console.log('Evant RESTful API server started on: ' + port);
+        });
+      }
+    })
   }
 });
 
