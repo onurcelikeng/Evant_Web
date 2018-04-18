@@ -3,6 +3,7 @@ getStatistics();
 getCategories();
 getEvents();
 
+
 function initialize() {
     var token = localStorage.getItem("token");
     if (token != null) {
@@ -40,6 +41,10 @@ function logout() {
     x = document.getElementById('loggedOutPanel');
     x.style.display = 'block';
     x = document.getElementById('loggedInPanel');
+    x.style.display = 'none';
+    x = document.getElementById('addEvent');
+    x.style.display = 'none';
+    x = document.getElementById('addEventItem');
     x.style.display = 'none';
     $('#logoutModal').modal('hide');
 }
