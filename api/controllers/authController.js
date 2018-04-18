@@ -3,6 +3,7 @@ var db = require('../../config/db');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
 var config = require('../../config/config');
+var ObjectId = require('mongodb').ObjectId; 
 
 exports.login = function (req, res) {
     db.get().collection('users').findOne({ email: req.body.email }, function (err, user) {
@@ -50,6 +51,27 @@ exports.register = function (req, res) {
                 });
             });
         });
+    });
+}
+
+exports.getMe = function (req, res) {
+    var userId = null;
+    var token = req.headers['authorization'];
+
+    jwt.verify(token, config.secret, function(err, decoded) {      
+        if (err) 
+          return res.status(500).send({ isSuccess: false, message: 'Failed to authenticate token.' });    
+            userId = decoded.id;
+    });
+
+    db.get().collection('users').findOne({ "_id": ObjectId(userId) }, function (err, user) {
+        res.status(200).send({
+            isSuccess: true,
+            data: {
+                name: user.name,
+                email: user.email
+            }
+        })
     });
 }
 

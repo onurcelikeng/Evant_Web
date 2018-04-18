@@ -34,9 +34,13 @@
 						<li><a href="#counts">Statistics</a></li>
 						<li style="display: none" id="addEventItem"><a href="#addEvent">Add Event</a></li>
 					</ul>
-					<ul class="nav navbar-nav navbar-right">
+					<ul id="loggedOutPanel" style="display: block" class="nav navbar-nav navbar-right">
 						<li><a href="#signupModal" data-toggle="modal">Sign Up</a></li>
 						<li><a href="#loginModal" data-toggle="modal">Login</a></li>
+					</ul>
+					<ul id="loggedInPanel" style="display: none" class="nav navbar-nav navbar-right">
+						<li><a id="username"></a></li>
+						<li><a href="#logoutModal" data-toggle="modal">Logout</a></li>
 					</ul>
 				</div>
 			</div>
@@ -60,10 +64,10 @@
 			<div class="container">
 				<div class="row">
 					<div class="section-header">
-						<h2>Events</h2>
+						<h2>Last Events</h2>
 					</div>
 					<div class="section-content">
-						<div class="container">
+						<div id="eventsPanel" class="container">
 							<ul id="og-grid" class="og-grid">
 								<li>
 									<a href="#" data-largesrc="images/upcoming-event-1.jpg" data-title="BMW Open Championship" data-description="Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage soko coriander sweet pepper water spinach winter purslane shallot tigernut lentil beetroot.">
@@ -215,9 +219,6 @@
 								<label for="pic">Picture:</label>
 								<input type="file" class="form-control" id="pic">
 							</div>
-							<div class="checkbox col-md-6">
-								<label><input type="checkbox">Private</label>
-							</div>
 							<button type="submit" class="btn btn-default alignright" onclick="addEvent()">Add</button>
 						</form>
 					</div>
@@ -312,6 +313,24 @@
 				</div>
 			</div>
 		</div>
+
+		<div id="logoutModal" class="modal fade" role="dialog">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Logout</h4>
+						</div>
+						<div class="modal-body">
+							<div>Are you sure?</div>
+							<div class="modal-buttons">
+								<button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+								<input type="button" class="btn btn-default" id="loginButton" value="Yes" onclick="logout()"/>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		
 		<!-- Scripts -->
 

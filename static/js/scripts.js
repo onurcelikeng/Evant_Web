@@ -1,5 +1,14 @@
+initialize();
 getStatistics();
 getCategories();
+getEvents();
+
+function initialize() {
+    var token = localStorage.getItem("token");
+    if (token != null) {
+        getMe();
+    }
+}
 
 function login() {
     var email = document.getElementById("email").value;
@@ -8,11 +17,9 @@ function login() {
     if (email != "" && password != "") {
         $.post("/api/auth",{email: email, password: password})
         .done(function(res) {
-            if(res.isSuccess) {
-                var x = document.getElementById('addEvent');
-                x.style.display = 'block';
-                x = document.getElementById('addEventItem');
-                x.style.display = 'inline'
+            if (res.isSuccess) {
+                localStorage.setItem("token", res.token);
+                getMe();     
                 $('#loginModal').modal('hide');
                 closeLoginModal();
             }
@@ -27,6 +34,16 @@ function login() {
     }
 }
 
+function logout() {
+    // expire date = -1
+    localStorage.clear();
+    x = document.getElementById('loggedOutPanel');
+    x.style.display = 'block';
+    x = document.getElementById('loggedInPanel');
+    x.style.display = 'none';
+    $('#logoutModal').modal('hide');
+}
+
 function signup() {
     var name = document.getElementById("name").value;
     var email = document.getElementById("mail").value;
@@ -37,17 +54,13 @@ function signup() {
         if (password == repassword) {
             $.post("/api/auth/register",{name: name, email: email, password: password, repassword: repassword})
             .done(function(res) {
-                console.log(res.message);
                 if(res.isSuccess) {
                     $.post("/api/auth",{email: email, password: password})
                     .done(function(res) {
-                       if(res.isSuccess) {
-                           var x = document.getElementById('addEvent');
-                           x.style.display = 'block';
-                           x = document.getElementById('addEventItem');
-                           x.style.display = 'inline'
-                           $('#signupModal').modal('hide');
-                           closeSignupModal();
+                        if (res.isSuccess) {
+                            getMe();
+                            $('#signupModal').modal('hide');
+                            closeSignupModal();
                        }
                        else console.log(res.message);
                     })
@@ -67,6 +80,31 @@ function signup() {
     else {
         console.log("Missing values.")
     }
+}
+
+function getMe() {
+    $.ajax({
+        type: "GET",
+        url: "api/auth/me",
+        headers: { "authorization": localStorage.getItem("token") },
+        contentType: 'application/json; charset=utf-8',
+        success: function (res) {
+            if (res.isSuccess) {
+                document.getElementById("username").innerHTML = res.data.name;
+                var x = document.getElementById('addEvent');
+                x.style.display = 'block';
+                x = document.getElementById('addEventItem');
+                x.style.display = 'inline';
+                x = document.getElementById('loggedOutPanel');
+                x.style.display = 'none';
+                x = document.getElementById('loggedInPanel');
+                x.style.display = 'block';
+            }
+        },
+        error: function (err) {
+            console.log(err);
+        }
+    });
 }
 
 function getStatistics() { 
@@ -90,7 +128,15 @@ function getStatistics() {
         console.log("error");
     });
 
-    document.getElementById("eventCount").innerHTML = 25;
+    $.get("/api/events/count")
+    .done(function(res) {
+        if(res.isSuccess) {
+            document.getElementById("eventCount").innerHTML = res.data.eventCount;
+        }
+    }) 
+    .fail(function() {
+        console.log("error");
+    });
 }
 
 function getCategories() {
@@ -120,11 +166,11 @@ function getEvents() {
         if(res.isSuccess) {
             $.each(res.data.events, function(){
                 content += '<li>'+
-                                '<a href="#" data-largesrc="images/upcoming-event-1.jpg" data-title="BMW Open Championship" data-description="Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage soko coriander sweet pepper water spinach winter purslane shallot tigernut lentil beetroot.">'+
-                                    '<img src="images/upcoming-event-1.jpg" alt="img01">'+
+                                '<a href="#" data-largesrc="' + this.Photo + '" data-title="' + this.Title + '" data-description="' + this.Content + '">'+
+                                    '<img src="' + this.Photo + '" alt="img01">'+
                                     '<div class="overlay"></div>'+
                                     '<div class="info">'+
-                                        '<p>BMW Open Championship </p>'+
+                                        '<p>' + this.Title + '</p>'+
                                         '<p><span>25 August 2018</span></p>'+
                                     '</div>'+
                                 '</a>'+
@@ -155,8 +201,7 @@ function addEvent() {
             longitude: longitude,
             city: city,
             town: town,
-            picture: "picture",
-            private: "private"
+            picture: "picture"
         }
 
         $.post("/api/events", body)

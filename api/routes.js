@@ -11,6 +11,9 @@ module.exports = function(app) {
   app.route('/api/auth/register')
     .post(auth.register);
   
+  app.route('/api/auth/me')
+    .get(auth.getMe);
+  
   app.route('/api/auth/count')
     .get(auth.getUserCount);
   
