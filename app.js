@@ -24,7 +24,7 @@ fs.readFile("index.html", "utf8", function (err, data) {
   }
   else {
     indexHtml = data;
-    db.connect('mongodb://localhost:27017/evantdb', function(err) {
+    db.connect('mongodb://evantmongodb:vFqW9PbNjXkeFnSUneSloxIpDZcFDVYHTnszL9oJJvEAw9VnfzJcd2VPzrvENGN4Snd1b43m3XCxjO86hJGOqw%3D%3D@evantmongodb.documents.azure.com:10255/?ssl=true', function(err) {
       if (err) {
         console.log('Unable to connect to Mongo.')
         process.exit(1)
