@@ -12,21 +12,24 @@ module.exports = function(app) {
     .post(auth.register);
   
   app.route('/api/auth/me')
-    .get(auth.getMe);
+    .get(auth.me);
   
   app.route('/api/auth/count')
-    .get(auth.getUserCount);
+    .get(auth.userCount);
   
   app.route('/api/categories')
-    .get(categories.getCategories);
+    .get(categories.categories);
   
   app.route('/api/categories/count')
-    .get(categories.getCategoryCount);
+    .get(categories.categoryCount);
   
   app.route('/api/events')
-    .get(events.getEvents)
+    .get(events.events)
     .post(events.addEvent, VerifyToken);
   
+  app.route('/api/eventDetail/:id')
+    .get(events.eventDetail)
+
   app.route('/api/events/count')
-    .get(events.getEventCount);
+    .get(events.eventCount);
 };

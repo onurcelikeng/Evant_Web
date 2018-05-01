@@ -1,50 +1,24 @@
 'use strict';
-var db = require('../../config/db');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
-var config = require('../../config/config');
+var config = require('../../config');
 var ObjectId = require('mongodb').ObjectId; 
-
-exports.login = function (req, res) {
-    db.get().collection('users').findOne({ email: req.body.email }, function (err, user) {
-        if (err) return res.status(500).send({
-            isSuccess: false,
-            message: 'Error on the server.'
-        });
-        if (!user) return res.status(404).send({
-            isSuccess: false,
-            message: 'User not found.'
-        });
-
-        var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
-        if (!passwordIsValid) return res.status(401).send({ isSuccess: false, token: null });
-
-        var token = jwt.sign({ id: user._id }, config.secret, {
-            expiresIn: 86400 //expires in 24 hours
-        });
-        res.status(200).send({ isSuccess: true, token: token });
-    });
-};
+var User = require('./../models/user');
 
 exports.register = function (req, res) {
     bcrypt.genSalt(10, function (err, salt) {
         bcrypt.hash(req.body.password, salt, function (err, hash) {
-            var body = {
-                name: req.body.name,
+            var user = new User({ 
+                name: req.body.name, 
                 email: req.body.email,
                 password: hash
-            };
-
-            db.get().collection('users').insert(body, function (err, result) {
+            });
+            user.save(function(err) {
                 if (err) return res.status(500).send({
                     isSuccess: false,
                     message: 'Error on the server.'
                 });
-                if (!result) return res.status(404).send({
-                    isSuccess: false,
-                    message: 'Could not register.'
-                });
-
+                
                 res.status(200).send({
                     isSuccess: true,
                     message: "Registered successfully."
@@ -54,7 +28,29 @@ exports.register = function (req, res) {
     });
 }
 
-exports.getMe = function (req, res) {
+exports.login = function (req, res) {
+    User.findOne({ email: req.body.email }, function (err, user) {
+        if (err) return res.status(500).send({
+            isSuccess: false,
+            message: 'Error on the server.'
+        });
+        if (!user) return res.status(404).send({
+            isSuccess: false,
+            message: 'User not exists.'
+        });
+
+        var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
+        if (!passwordIsValid) return res.status(401).send({ isSuccess: false, token: null });
+
+        var token = jwt.sign({ id: user._id }, config.secret, {
+            expiresIn: 86400 //expires in 24 hours
+        });
+
+        res.status(200).send({ isSuccess: true, token: token });
+    });
+}
+
+exports.me = function (req, res) {
     var userId = null;
     var token = req.headers['authorization'];
 
@@ -63,21 +59,37 @@ exports.getMe = function (req, res) {
           return res.status(500).send({ isSuccess: false, message: 'Failed to authenticate token.' });    
             userId = decoded.id;
     });
+    User.findById(userId, function (err, user) {
+        if (err) return res.status(500).send({
+            isSuccess: false,
+            message: 'Error on the server.'
+        });
+        if (!user) return res.status(404).send({
+            isSuccess: false,
+            message: 'Email not exists.'
+        });
 
-    db.get().collection('users').findOne({ "_id": ObjectId(userId) }, function (err, user) {
         res.status(200).send({
             isSuccess: true,
             data: {
                 name: user.name,
                 email: user.email
             }
-        })
+        });
     });
 }
 
-exports.getUserCount = function (req, res) {
-    var collection = db.get().collection('users');
-    collection.count(function (err, count) {
+exports.userCount = function (req, res) {
+    User.count(function (err, count) {
+        if (err) return res.status(500).send({
+            isSuccess: false,
+            message: 'Error on the server.'
+        });
+        if (!count) return res.status(404).send({
+            isSuccess: false,
+            message: 'Error occured.'
+        });
+
         res.status(200).send({
             isSuccess: true,
             data: {

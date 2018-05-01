@@ -1,10 +1,18 @@
 'use strict';
-var db = require('../../config/db');
-var config = require('../../config/config');
+var config = require('../../config');
+var Category = require('./../models/category');
 
-exports.getCategories = function (req, res) {
-    var collection = db.get().collection('categories');
-    collection.find().toArray(function (err, categories) {
+exports.categories = function (req, res) {
+    Category.find(function (err, categories) {
+        if (err) return res.status(500).send({
+            isSuccess: false,
+            message: 'Error on the server.'
+        });
+        if (!categories) return res.status(404).send({
+            isSuccess: false,
+            message: '0 category found.'
+        });
+        
         res.status(200).send({
             isSuccess: true,
             data: {
@@ -14,9 +22,17 @@ exports.getCategories = function (req, res) {
     });
 }
 
-exports.getCategoryCount = function (req, res) {
-    var collection = db.get().collection('categories');
-    collection.count(function (err, count) {
+exports.categoryCount = function (req, res) {
+    Category.count(function (err, count) {
+        if (err) return res.status(500).send({
+            isSuccess: false,
+            message: 'Error on the server.'
+        });
+        if (!count) return res.status(404).send({
+            isSuccess: false,
+            message: 'Error occured.'
+        });
+
         res.status(200).send({
             isSuccess: true,
             data: {

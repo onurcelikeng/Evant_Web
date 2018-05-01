@@ -1,18 +1,25 @@
-var express = require('express'),
-  app = express(),
-  port = process.env.PORT || 3000,
-  bodyParser = require('body-parser');
-
+// get the packages
+var express = require('express');
+var app = express();
+var bodyParser = require('body-parser');
+var morgan = require('morgan');
+var mongoose = require('mongoose');
 var compression = require('compression');
 var fs = require('fs');
-var db = require('./config/db');
+var config = require('./config');
+var routes = require('./api/routes');
+
+// configurations
+var port = process.env.PORT || 3000;
+
+app.set('superSecret', config.secret)
 
 app.use(express.static('static'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(compression());
+app.use(morgan('dev'));
 
-var routes = require('./api/routes');
 routes(app);
 
 var indexHtml;
@@ -24,19 +31,12 @@ fs.readFile("index.html", "utf8", function (err, data) {
   }
   else {
     indexHtml = data;
-    db.connect('mongodb://evantmongodb:vFqW9PbNjXkeFnSUneSloxIpDZcFDVYHTnszL9oJJvEAw9VnfzJcd2VPzrvENGN4Snd1b43m3XCxjO86hJGOqw%3D%3D@evantmongodb.documents.azure.com:10255/?ssl=true', function(err) {
-      if (err) {
-        console.log('Unable to connect to Mongo.')
-        process.exit(1)
-      } else {
-        app.listen(port, function () {
-          console.log('Evant RESTful API server started on: ' + port);
-        });
-      }
-    })
+    mongoose.connect(config.database);
   }
 });
 
 app.get('/', function (req, res) {
 	res.send(indexHtml);
 });
+
+app.listen(port);

@@ -1,37 +1,19 @@
 'use strict';
-var db = require('../../config/db');
-var config = require('../../config/config');
+var config = require('../../config');
+var Event = require('./../models/event');
+var ObjectId = require('mongodb').ObjectId;
 
-exports.getEvents = function (req, res) {
-    var collection = db.get().collection('events');
-    collection.find().toArray(function (err, events) {
-        res.status(200).send({
-            isSuccess: true,
-            data: {
-                events: events
-            }
-        })
-    });
-}
-
-exports.addEvent = function (req, res) {
-    db.get().collection('events').insert(req.body, function (err, result) {
+exports.eventCount = function (req, res) {
+    Event.count(function (err, count) {
         if (err) return res.status(500).send({
             isSuccess: false,
             message: 'Error on the server.'
         });
-        if (!result) return res.status(404).send({
+        if (!count) return res.status(404).send({
             isSuccess: false,
-            message: 'Event could not be added.'
+            message: 'Error occured.'
         });
 
-        res.status(200).send({ isSuccess: true, message: "Event added successfully." });
-    });
-};
-
-exports.getEventCount = function (req, res) {
-    var collection = db.get().collection('events');
-    collection.count(function (err, count) {
         res.status(200).send({
             isSuccess: true,
             data: {
@@ -40,4 +22,86 @@ exports.getEventCount = function (req, res) {
         });
     });
 }
+
+exports.events = function (req, res) {
+    Event.find(function (err, events) {
+        if (err) return res.status(500).send({
+            isSuccess: false,
+            message: 'Error on the server.'
+        });
+        if (!events) return res.status(404).send({
+            isSuccess: false,
+            message: 'No events found.'
+        });
+
+        // last 6 events
+        var list = [];
+        events.forEach(event => {
+            list.push({
+                id: event._id,
+                start: event.start,
+                city: event.address.city,
+                title: event.title,
+                photo: event.photo
+            });
+        });
+
+        res.status(200).send({
+            isSuccess: true,
+            data: {
+                events: list
+            }
+        });
+    });
+}
+
+exports.eventDetail = function (req, res) {
+    Event.findOne({ "_id": ObjectId(req.params.id) }, function (err, event) {
+        if (err) return res.status(500).send({
+            isSuccess: false,
+            message: 'Error on the server.'
+        });
+        if (!event) return res.status(404).send({
+            isSuccess: false,
+            message: 'Error occured.'
+        });
+
+        res.status(200).send({
+            isSuccess: true,
+            data: event
+        });
+    });
+}
+
+exports.addEvent = function (req, res) {
+    var event = new Event({ 
+        title: req.body.title, 
+        createDate: req.body.createDate,
+        photo: req.body.photo,
+        address: {
+            city: req.body.city,
+            town: req.body.town,
+            fullAddress: req.body.city + " " + req.body.town
+        },
+        user: {
+            id: "1",
+            name: document.getElementById("username").innerHTML
+        },
+        start: "",
+        content: "",
+        category: {
+            id: "1",
+            name: ""
+        }
+    });
+
+    event.save( function (err) {
+        if (err) return res.status(500).send({
+            isSuccess: false,
+            message: 'Error on the server.'
+        });
+
+        res.status(200).send({ isSuccess: true, message: "Event added successfully." });
+    });
+};
 

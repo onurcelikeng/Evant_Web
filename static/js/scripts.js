@@ -1,7 +1,7 @@
 initialize();
+getEvents();
 getStatistics();
 getCategories();
-getEvents();
 
 
 function initialize() {
@@ -169,24 +169,49 @@ function getEvents() {
     .done(function(res) {
         var content = '';
         if(res.isSuccess) {
+            console.log(res.data.events);
             $.each(res.data.events, function(){
-                content += '<li>'+
-                                '<a href="#" data-largesrc="' + this.Photo + '" data-title="' + this.Title + '" data-description="' + this.Content + '">'+
-                                    '<img src="' + this.Photo + '" alt="img01">'+
-                                    '<div class="overlay"></div>'+
-                                    '<div class="info">'+
-                                        '<p>' + this.Title + '</p>'+
-                                        '<p><span>25 August 2018</span></p>'+
-                                    '</div>'+
-                                '</a>'+
-                            '</li>';
+                content += '<li style="cursor:pointer;" onclick="getEventDetail(\'' + this.id + '\')">' +
+								'<div class="date">' +
+									'<a href="#">' +
+										'<span class="day">25</span>' +
+										'<span class="month">August</span>' +
+										'<span class="year">2016</span>' +
+									'</a>' +
+								'</div>' +
+								'<a href="#">' +
+									'<img src="' + this.photo + '" alt="image">' +
+								'</a>' +
+								'<div class="info">' +
+									'<p>' + this.title + ' <span>' + this.city + '</span></p>' +
+								'</div>' +
+							'</li>';
 
-                $('#og-grid').html(content);
+                document.getElementById("eventsPanel").innerHTML = content;
             })
         }
     }) 
     .fail(function() {
         console.log("error");
+    });
+}
+
+function getEventDetail(id) {
+    console.log(id);
+    $.get("/api/eventDetail/" + id)
+    .done(function(res) {
+        console.log(res);
+        content = '<div class="modal-header">' +
+                      '<button type="button" class="close" data-dismiss="modal">&times;</button>' +
+                      '<h4 class="modal-title">' + res.data.title + '</h4>' +
+                  '</div>' +
+                  '<div class="modal-body">' +
+                      '<img src="' + res.data.photo + '" alt="image">' +
+                      '<div>Are you sure?</div>' +
+                  '</div>';
+
+        document.getElementById("eventDetail").innerHTML = content;
+        $('#eventDetailModal').modal('show');
     });
 }
 
@@ -200,16 +225,15 @@ function addEvent() {
 
     if (eventName != "" && date != "" && latitude != "" && longitude != "" && city != "" && town != "") {
         var body = {
-            eventName: eventName,
-            date: date,
-            latitude: latitude,
-            longitude: longitude,
+            title: eventName,
+            CreateDate: new Date(),
             city: city,
             town: town,
-            picture: "picture"
+            photo: "picture",
+            fullAddress: ""
         }
 
-        $.post("/api/events", body)
+       /* $.post("/api/events", body)
         .done(function(res) {
             if (res.isSuccess) {
                 console.log(res.message);
@@ -219,7 +243,7 @@ function addEvent() {
         })
         .fail(function() {
             console.log("add event error");
-        });
+        });*/
     }
     else {
         console.log("Missing values.")

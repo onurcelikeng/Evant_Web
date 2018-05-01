@@ -160,46 +160,124 @@ body{
 	background:#ff6600;
 }
 
+.events .section-header p{
+	color:#6f6f6f;
+	font-size:13px;
+	font-family: "Montserrat-Light";
+	line-height:22px;
+	padding:0 2px;
+	float:left;
+	width:70%;
+}
+
+.events .section-header a{
+	color:#ff6600;
+	border:1px solid #ff6600;
+	background:#fff;
+	display:inline-block;
+	text-decoration:none;
+	font-size:12px;
+	font-family: "Montserrat-Light";
+	padding:13px 25px;
+	border-radius:20px;
+	text-transform:uppercase;
+	font-weight:300;
+}
+
+.events .section-header a:hover{
+	background:#ff6600;
+	color:#fff
+}
+
+.events .section-content ul li{
+	width:33.333333%;
+	float:left;
+	position:relative;
+}
+
+.events .section-content .date{
+	padding:15px;
+	background:rgba(36,36,36, 0.8);
+	position:absolute;
+	top:0;
+	left:20px;
+	text-align:center;
+	text-transform:uppercase;
+	color:#fff;
+}
+
+.events .section-content .date a{
+	color:#fff
+}
+
+.events .section-content .date .day{
+	font-size:30px;
+	display:block;
+	font-family: "Montserrat-Regular";
+	margin:0 0 5px;
+}
+
+.events .section-content .date .month{
+	font-size:10px;
+	display:block;
+	font-family: "Montserrat-Light";
+	margin:0 0 5px;
+}
+
+.events .section-content .date .year{
+	font-size:10px;
+	display:block;
+	font-family: "Montserrat-Light";
+}
+
 .events .section-content .info{
 	padding:50px 20px 25px;
 	position:absolute;
 	bottom:0;
 	left:0;
 	right:0;
-}
-
-.events .section-content .overlay{
-	padding:50px 20px 25px;
-	position:absolute;
-	bottom:0;
-	left:0;
-	right:0;
-	top:0;
-	background:rgba(0,0,0,0.6); 
+	background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(253,253,253,0) 1%, rgba(28,28,28,1) 100%); 
+	background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(253,253,253,0) 1%,rgba(28,28,28,1) 100%);
+	background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(253,253,253,0) 1%,rgba(28,28,28,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#1c1c1c',GradientType=0 )
+	
 }
 
 .events .section-content .info p{
 	font-size:16px;
 	font-family: "Montserrat-Regular";
 	color:#fff;
-	width:100%;
+	width:65%;
 	float:left;
 	margin:0;
 }
 
 .events .section-content .info p span{
 	display:block;
-	width:100%;
 	color:#b3b3b3;
 	font-size:11px;
 	font-family: "Montserrat-Light";
 }
 
-.events .container .event-detail-header{
-	float: left;
-	font-family: "Montserrat-Light";
-	margin: 20px, 20px, 20px, 20px;
-	width: 100;
+.events .section-content .info .get-ticket{
+	font-size: 12px;
+	line-height: 12px;
+	color:#fff;
+	padding:10px 15px;
+	background:#ff6600;
+	text-transform:uppercase;
+	font-family: 'Open Sans', sans-serif;
+	border:none;
+	border-radius:20px;
+	font-weight:700;
+	display:inline-block;
+	width:30%;
+	text-align:center
+}
+
+.events .section-content .info .get-ticket:hover{
+	background:#fff;
+	color:#ff6600;
 }
 
 /*--------------------------------------------------------------

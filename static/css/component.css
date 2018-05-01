@@ -1,4 +1,4 @@
-.og-grid {
+.grid {
 	list-style: none;
 	padding: 20px 0;
 	margin: 0 auto;
@@ -6,22 +6,22 @@
 	width: 100%;
 }
 
-.og-grid li {
+.grid li {
 	display: inline-block;
 	margin: 10px 5px 0 5px;
 	width: 30%;
 	vertical-align: top;
 }
 
-.og-grid li > a,
-.og-grid li > a img {
+.grid li > a,
+.grid li > a img {
 	border: none;
 	outline: none;
 	display: block;
 	position: relative;
 }
 
-.og-grid li.og-expanded > a::after {
+.grid li.og-expanded > a::after {
 	top: auto;
 	border: solid transparent;
 	content: " ";
