@@ -190,7 +190,7 @@ body{
 }
 
 .events .section-content ul li{
-	width:33.333333%;
+	width:30%;
 	float:left;
 	position:relative;
 }
@@ -257,27 +257,6 @@ body{
 	color:#b3b3b3;
 	font-size:11px;
 	font-family: "Montserrat-Light";
-}
-
-.events .section-content .info .get-ticket{
-	font-size: 12px;
-	line-height: 12px;
-	color:#fff;
-	padding:10px 15px;
-	background:#ff6600;
-	text-transform:uppercase;
-	font-family: 'Open Sans', sans-serif;
-	border:none;
-	border-radius:20px;
-	font-weight:700;
-	display:inline-block;
-	width:30%;
-	text-align:center
-}
-
-.events .section-content .info .get-ticket:hover{
-	background:#fff;
-	color:#ff6600;
 }
 
 /*--------------------------------------------------------------

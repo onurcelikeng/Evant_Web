@@ -23,7 +23,7 @@ module.exports = mongoose.model('Event', new Schema({
     type: Object,
     required: true,
     properties: {
-        id: String,
+        id: mongoose.SchemaTypes.ObjectId,
         name: String
     }
   },
@@ -31,7 +31,7 @@ module.exports = mongoose.model('Event', new Schema({
     type: Object,
     required: true,
     properties: {
-        id: String,
+        id: mongoose.SchemaTypes.ObjectId,
         name: String
     }
   },
@@ -43,5 +43,9 @@ module.exports = mongoose.model('Event', new Schema({
         town: String,
         fullAddress: String
     }
+  },
+  isDeleted: {
+      type: Boolean,
+      required: true
   }
 }));

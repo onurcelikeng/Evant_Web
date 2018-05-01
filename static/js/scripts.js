@@ -3,7 +3,6 @@ getEvents();
 getStatistics();
 getCategories();
 
-
 function initialize() {
     var token = localStorage.getItem("token");
     if (token != null) {
@@ -59,10 +58,12 @@ function signup() {
         if (password == repassword) {
             $.post("/api/auth/register",{name: name, email: email, password: password, repassword: repassword})
             .done(function(res) {
+                console.log(res);
                 if(res.isSuccess) {
                     $.post("/api/auth",{email: email, password: password})
                     .done(function(res) {
                         if (res.isSuccess) {
+                            localStorage.setItem("token", res.token);
                             getMe();
                             $('#signupModal').modal('hide');
                             closeSignupModal();
@@ -72,7 +73,7 @@ function signup() {
                     .fail(function() {
                        console.log("login error");
                     });
-                }
+                } else console.log(res.message);
             })
             .fail(function() {
                 console.log("register error");
@@ -95,6 +96,7 @@ function getMe() {
         contentType: 'application/json; charset=utf-8',
         success: function (res) {
             if (res.isSuccess) {
+                localStorage.setItem("id", res.data.id);
                 document.getElementById("username").innerHTML = res.data.name;
                 var x = document.getElementById('addEvent');
                 x.style.display = 'block';
@@ -169,14 +171,13 @@ function getEvents() {
     .done(function(res) {
         var content = '';
         if(res.isSuccess) {
-            console.log(res.data.events);
             $.each(res.data.events, function(){
-                content += '<li style="cursor:pointer;" onclick="getEventDetail(\'' + this.id + '\')">' +
+                content += '<li style="cursor:pointer; margin: 10px" onclick="getEventDetail(\'' + this.id + '\')">' +
 								'<div class="date">' +
 									'<a href="#">' +
-										'<span class="day">25</span>' +
-										'<span class="month">August</span>' +
-										'<span class="year">2016</span>' +
+										'<span class="day">' + this.day + '</span>' +
+										'<span class="month">' + this.month + '</span>' +
+										'<span class="year">' + this.year + '</span>' +
 									'</a>' +
 								'</div>' +
 								'<a href="#">' +
@@ -201,17 +202,52 @@ function getEventDetail(id) {
     $.get("/api/eventDetail/" + id)
     .done(function(res) {
         console.log(res);
+        var display = "none";
+        console.log(localStorage.getItem("id"))
+        if(res.data.userId == localStorage.getItem("id")) display = "block";
         content = '<div class="modal-header">' +
                       '<button type="button" class="close" data-dismiss="modal">&times;</button>' +
                       '<h4 class="modal-title">' + res.data.title + '</h4>' +
                   '</div>' +
                   '<div class="modal-body">' +
-                      '<img src="' + res.data.photo + '" alt="image">' +
-                      '<div>Are you sure?</div>' +
+                      '<img class="col-12 col-md-4" src="' + res.data.photo + '" alt="image">' +
+
+                      '<p style="font-weight: bold; font-size: 20px; margin:0">' + res.data.title + '-' + res.data.userName + '</p>' +
+                      '<p style="margin:0">' + res.data.start + '</p>' +
+                      '<p style="margin:0">' + res.data.address + '</p>' +
+
+                      '<div col-12 col-md-12>' + 
+                          '<p style="margin: 10px; margin-top: 30px">' + res.data.content + '</p>' +
+                      '</div>' +
+                  '</div>' +
+                  '<div class="modal-footer">' +
+                    '<button type="button" class="btn btn-danger btn-default pull-left" style="margin-left: 10px; display: ' + display + '" onclick="deleteEvent(\'' + res.data.id + '\');"><span class="glyphicon glyphicon-trash"></span> delete</button>' +
+                    '<button type="submit" class="btn btn-primary btn-default pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>' +
                   '</div>';
 
         document.getElementById("eventDetail").innerHTML = content;
         $('#eventDetailModal').modal('show');
+    });
+}
+
+function deleteEvent(id) {
+    console.log(localStorage.getItem("token"));
+    $.ajax({
+        type: "POST",
+        url: "api/events/" + id,
+        headers: { "authorization": localStorage.getItem("token") },
+        contentType: 'application/json; charset=utf-8',
+        success: function (res) {
+            if (res.isSuccess) {
+                console.log(res.message);
+                $('#eventDetailModal').modal('hide');
+                getEvents();
+            }
+            else console.log(res.message);
+        },
+        error: function (err) {
+            console.log(err);
+        }
     });
 }
 
@@ -233,7 +269,7 @@ function addEvent() {
             fullAddress: ""
         }
 
-       /* $.post("/api/events", body)
+        $.post("/api/events", body)
         .done(function(res) {
             if (res.isSuccess) {
                 console.log(res.message);
@@ -243,7 +279,7 @@ function addEvent() {
         })
         .fail(function() {
             console.log("add event error");
-        });*/
+        });
     }
     else {
         console.log("Missing values.")

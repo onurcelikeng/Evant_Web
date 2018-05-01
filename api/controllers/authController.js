@@ -6,26 +6,39 @@ var ObjectId = require('mongodb').ObjectId;
 var User = require('./../models/user');
 
 exports.register = function (req, res) {
-    bcrypt.genSalt(10, function (err, salt) {
-        bcrypt.hash(req.body.password, salt, function (err, hash) {
-            var user = new User({ 
-                name: req.body.name, 
-                email: req.body.email,
-                password: hash
-            });
-            user.save(function(err) {
-                if (err) return res.status(500).send({
-                    isSuccess: false,
-                    message: 'Error on the server.'
-                });
-                
-                res.status(200).send({
-                    isSuccess: true,
-                    message: "Registered successfully."
-                });
-            });
+    User.findOne({email: req.body.email}, function(err, user) {
+        if (err) return res.status(500).send({
+            isSuccess: false,
+            message: 'Error on the server.'
         });
+
+        if (!user) {
+            bcrypt.genSalt(10, function (err, salt) {
+                bcrypt.hash(req.body.password, salt, function (err, hash) {
+                    var user = new User({ 
+                        name: req.body.name, 
+                        email: req.body.email,
+                        password: hash
+                    });
+                    user.save(function(err) {
+                        if (err) return res.status(500).send({
+                            isSuccess: false,
+                            message: 'Error on the server.'
+                        });
+                        
+                        res.status(200).send({
+                            isSuccess: true,
+                            message: "Registered successfully."
+                        });
+                    });
+                });
+            });
+        } 
+
+        res.status(200).send({ isSuccess: false, message: "This email is already registered. Please try a different email address or login." });
     });
+
+
 }
 
 exports.login = function (req, res) {
@@ -73,7 +86,8 @@ exports.me = function (req, res) {
             isSuccess: true,
             data: {
                 name: user.name,
-                email: user.email
+                email: user.email,
+                id: user._id
             }
         });
     });

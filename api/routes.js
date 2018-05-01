@@ -26,6 +26,9 @@ module.exports = function(app) {
   app.route('/api/events')
     .get(events.events)
     .post(events.addEvent, VerifyToken);
+
+  app.route('/api/events/:id')
+    .post(events.deleteEvent, VerifyToken);
   
   app.route('/api/eventDetail/:id')
     .get(events.eventDetail)

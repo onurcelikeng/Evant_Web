@@ -1,7 +1,9 @@
 'use strict';
+var jwt = require('jsonwebtoken');
 var config = require('../../config');
 var Event = require('./../models/event');
 var ObjectId = require('mongodb').ObjectId;
+var moment = require('moment');
 
 exports.eventCount = function (req, res) {
     Event.count(function (err, count) {
@@ -24,7 +26,10 @@ exports.eventCount = function (req, res) {
 }
 
 exports.events = function (req, res) {
-    Event.find(function (err, events) {
+    Event.find({isDeleted: false})
+    .sort({createDate: -1})
+    .limit(6)
+    .exec(function (err, events) {
         if (err) return res.status(500).send({
             isSuccess: false,
             message: 'Error on the server.'
@@ -34,12 +39,13 @@ exports.events = function (req, res) {
             message: 'No events found.'
         });
 
-        // last 6 events
         var list = [];
         events.forEach(event => {
             list.push({
                 id: event._id,
-                start: event.start,
+                day: moment(event.start).format('DD'),
+                month: moment(event.start).format('MMMM'),
+                year: moment(event.start).format('YYYY'),
                 city: event.address.city,
                 title: event.title,
                 photo: event.photo
@@ -66,10 +72,36 @@ exports.eventDetail = function (req, res) {
             message: 'Error occured.'
         });
 
+
         res.status(200).send({
             isSuccess: true,
-            data: event
+            data: {
+                id: event._id,
+                start: moment(event.start).format('lll'),
+                userName: event.user.name,
+                userId: event.user.id,
+                title: event.title,
+                photo: event.photo,
+                content: event.content,
+                address: event.address.fullAddress
+            }
         });
+    });
+}
+
+exports.deleteEvent = function (req, res) {
+    var token = req.headers['authorization'];
+
+    Event.findOneAndUpdate({_id: ObjectId(req.params.id)}, { $set: { isDeleted: true }},null, function (err, response) {
+        console.log(err);
+        console.log(response);
+        if (err) return res.status(500).send({
+            isSuccess: false,
+            message: 'Error on the server.'
+        });
+
+
+        res.status(200).send({ isSuccess: true, message: "Event deleted successfully." });
     });
 }
 
