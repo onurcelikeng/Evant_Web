@@ -221,7 +221,7 @@ function getEventDetail(id) {
                       '</div>' +
                   '</div>' +
                   '<div class="modal-footer">' +
-                    '<button type="button" class="btn btn-danger btn-default pull-left" style="margin-left: 10px; display: ' + display + '" onclick="deleteEvent(\'' + res.data.id + '\');"><span class="glyphicon glyphicon-trash"></span> delete</button>' +
+                    '<button type="button" class="btn btn-danger btn-default pull-left" style="margin-left: 10px; display: ' + display + '" onclick="deleteEvent(\'' + res.data.id + '\');"><span class="glyphicon glyphicon-trash"></span> Delete</button>' +
                     '<button type="submit" class="btn btn-primary btn-default pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>' +
                   '</div>';
 

@@ -70,9 +70,9 @@ exports.me = function (req, res) {
     jwt.verify(token, config.secret, function(err, decoded) {      
         if (err) 
           return res.status(500).send({ isSuccess: false, message: 'Failed to authenticate token.' });    
-            userId = decoded.id;
-    });
-    User.findById(userId, function (err, user) {
+        userId = decoded.id;
+
+        User.findById(userId, function (err, user) {
         if (err) return res.status(500).send({
             isSuccess: false,
             message: 'Error on the server.'
@@ -91,6 +91,8 @@ exports.me = function (req, res) {
             }
         });
     });
+    });
+    
 }
 
 exports.userCount = function (req, res) {
