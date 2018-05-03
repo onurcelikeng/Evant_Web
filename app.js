@@ -28,12 +28,12 @@ fs.readFile("index.html", "utf8", function (err, data) {
   }
   else {
     indexHtml = data;
-    mongoose.connect(config.database);
+    mongoose.connect(config.database, function() {
+      app.listen(port);
+    });
   }
 });
 
 app.get('/', function (req, res) {
 	res.send(indexHtml);
 });
-
-app.listen(port);
