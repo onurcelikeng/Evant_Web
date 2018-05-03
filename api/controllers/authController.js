@@ -71,24 +71,24 @@ exports.me = function (req, res) {
         if (err) 
           return res.status(500).send({ isSuccess: false, message: 'Failed to authenticate token.' });    
         userId = decoded.id;
-    });
-    User.findById(userId, function (err, user) {
-        if (err) return res.status(500).send({
-            isSuccess: false,
-            message: 'Error on the server.'
-        });
-        if (!user) return res.status(404).send({
-            isSuccess: false,
-            message: 'Email not exists.'
-        });
-
-        res.status(200).send({
-            isSuccess: true,
-            data: {
-                name: user.name,
-                email: user.email,
-                id: user._id
-            }
+        User.findById(userId, function (err, user) {
+            if (err) return res.status(500).send({
+                isSuccess: false,
+                message: 'Error on the server.'
+            });
+            if (!user) return res.status(404).send({
+                isSuccess: false,
+                message: 'Email not exists.'
+            });
+    
+            res.status(200).send({
+                isSuccess: true,
+                data: {
+                    name: user.name,
+                    email: user.email,
+                    id: user._id
+                }
+            });
         });
     });
 }

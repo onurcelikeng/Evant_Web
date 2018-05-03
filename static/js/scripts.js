@@ -226,7 +226,7 @@ function getEventDetail(id) {
                   '</div>';
 
         document.getElementById("eventDetail").innerHTML = content;
-        $('#eventDetailModal').modal('show');
+        $('#eventDetailModal').modal();
     });
 }
 
