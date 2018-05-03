@@ -17,7 +17,6 @@ app.set('superSecret', config.secret)
 app.use(express.static('static'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(compression());
 app.use(morgan('dev'));
 
 routes(app);
