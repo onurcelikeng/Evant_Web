@@ -49,7 +49,7 @@ body{
 ------------------------------------------------------------- */
 .site-header{
 	position:relative;
-	background:url(../images/hero-img.jpg) no-repeat center center;
+	background:url(../images/hero-img-min.jpg) no-repeat center center;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
