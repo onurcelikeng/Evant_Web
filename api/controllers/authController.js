@@ -71,8 +71,8 @@ exports.me = function (req, res) {
         if (err) 
           return res.status(500).send({ isSuccess: false, message: 'Failed to authenticate token.' });    
         userId = decoded.id;
-
-        User.findById(userId, function (err, user) {
+    });
+    User.findById(userId, function (err, user) {
         if (err) return res.status(500).send({
             isSuccess: false,
             message: 'Error on the server.'
@@ -91,8 +91,6 @@ exports.me = function (req, res) {
             }
         });
     });
-    });
-    
 }
 
 exports.userCount = function (req, res) {
