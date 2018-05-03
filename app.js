@@ -12,8 +12,8 @@ var routes = require('./api/routes');
 // configurations
 var port = process.env.PORT || 3000;
 
-app.set('superSecret', config.secret)
-
+app.set('superSecret', config.secret);
+app.use(compression());
 app.use(express.static('static'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
