@@ -5,7 +5,6 @@ var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var mongoose = require('mongoose');
 var compression = require('compression');
-var minify = require('express-minify');
 var fs = require('fs');
 var config = require('./config');
 var routes = require('./api/routes');
@@ -15,7 +14,6 @@ var port = process.env.PORT || 3000;
 
 app.set('superSecret', config.secret)
 
-app.use(minify());
 app.use(express.static('static'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
