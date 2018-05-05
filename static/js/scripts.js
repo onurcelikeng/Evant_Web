@@ -150,24 +150,18 @@ function getStatistics() {
 function getCategories() {
     $.get("/api/categories")
     .done(function(res) {
-        console.log(res)
         var content = '';
         var list = '';
-        var x = document.getElementById("category");
         if(res.isSuccess) {
             $.each(res.data.categories, function(){
                 content += '<li class="category col-sm-4">'+
                                 '<img src="' + this.picture + '" alt="image" class="img-rounded">'+
                                 '<a href="#" onclick="return false;"><span>' + this.name + '</span></a>'+
                             '</li>';
-                
-                var option = document.createElement("option");
-                option.text = this.name;
-                option.value = this._id;
-                console.log(document.getElementById("category"))
-                x.add(option);
+                list += 	'<option value="' + this._id + '">' + this.name + '</option>';
 
                 $('#categoryList').html(content);
+                document.getElementById("category").innerHTML = list;
             })
         }
     }) 
@@ -267,38 +261,59 @@ function addEvent() {
     var city = document.getElementById("city").value;
     var town = document.getElementById("town").value;
     var fullAddress = document.getElementById("fullAddress").value;
-    var photo = document.getElementById("photo").value;
+    var photo = document.getElementById("photo").files[0];
     var content = document.getElementById("content").value;
-    var category = document.getElementById("category").value;
+    var categoryId = document.getElementById("category").value;
+    var categoryName = $("#category option:selected").text();
 
-    if (eventName != "" && date != "" && latitude != "" && longitude != "" && city != "" && town != "") {
-        var body = {
-            title: eventName,
-            start: start,
-            city: city,
-            town: town,
-            photo: photo,
-            fullAddress: fullAddress,
-            user: {
-                userName: localStorage.getItem("name"),
-                id: localStorage.getItem("id")
+    if (eventName != "" && date != "" && city != "" && town != "") {
+
+        var formData = new FormData();
+        formData.append("File", photo);
+
+        $.ajax({
+            url: "https://evantapp.azurewebsites.net/api/events/photo",
+            type: "POST",
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+                photo = response.message;
+
+                var body = {
+                    title: eventName,
+                    start: start,
+                    city: city,
+                    town: town,
+                    fullAddress: fullAddress,
+                    photo: photo,
+                    content: content,
+                    user: {
+                        id: localStorage.getItem("id"),
+                        userName: localStorage.getItem("name")
+                    },
+                    category: {
+                        id: categoryId,
+                        categoryName: categoryName
+                    }
+                }
+
+                $.post("/api/events", body)
+                .done(function(res) {
+                    if (res.isSuccess) {
+                        console.log(res.message);
+                        getEvents();
+                    }
+                    else console.log(res.message);
+                })
+                .fail(function() {
+                    console.log("add event error");
+                });
             },
-            category: {
-                categoryName: category.categoryName,
-                id: category.id
+            error: function(jqXHR, textStatus, errorMessage) {
+                console.log(errorMessage);
             }
-        }
-
-        $.post("/api/events", body)
-        .done(function(res) {
-            if (res.isSuccess) {
-                console.log(res.message);
-                getEvents();
-            }
-            else console.log(res.message);
-        })
-        .fail(function() {
-            console.log("add event error");
         });
     }
     else {

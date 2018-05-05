@@ -72,7 +72,6 @@ exports.eventDetail = function (req, res) {
             message: 'Error occured.'
         });
 
-
         res.status(200).send({
             isSuccess: true,
             data: {
@@ -93,20 +92,17 @@ exports.deleteEvent = function (req, res) {
     var token = req.headers['authorization'];
 
     Event.findOneAndUpdate({_id: ObjectId(req.params.id)}, { $set: { isDeleted: true }},null, function (err, response) {
-        console.log(err);
-        console.log(response);
         if (err) return res.status(500).send({
             isSuccess: false,
             message: 'Error on the server.'
         });
-
 
         res.status(200).send({ isSuccess: true, message: "Event deleted successfully." });
     });
 }
 
 exports.addEvent = function (req, res) {
-    console.log(res);
+    console.log(req.body);
     var event = new Event({ 
         title: req.body.title, 
         createDate: moment().format(),
@@ -117,24 +113,26 @@ exports.addEvent = function (req, res) {
             fullAddress: req.body.fullAddress
         },
         user: {
-            id: req.body.user.id,
+            id: ObjectId(req.body.user.id),
             name: req.body.user.userName
         },
-        start: req.body.date,
+        start: req.body.start,
         content: req.body.content,
         category: {
-            id: req.body.category.id,
+            id: ObjectId(req.body.category.id),
             name: req.body.category.categoryName
-        }
+        },
+        isDeleted: false
     });
 
-    /*event.save( function (err) {
+    event.save( function (err) {
+        console.log(err)
         if (err) return res.status(500).send({
             isSuccess: false,
             message: 'Error on the server.'
         });
 
         res.status(200).send({ isSuccess: true, message: "Event added successfully." });
-    });*/
+    });
 };
 
