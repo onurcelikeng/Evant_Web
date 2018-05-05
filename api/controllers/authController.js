@@ -80,7 +80,6 @@ exports.me = function (req, res) {
                 isSuccess: false,
                 message: 'Email not exists.'
             });
-    
             res.status(200).send({
                 isSuccess: true,
                 data: {
