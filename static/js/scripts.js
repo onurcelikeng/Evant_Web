@@ -147,10 +147,12 @@ function getStatistics() {
 }
 
 function getCategories() {
+    var content = '';
+    var list = '';
     $.ajax({
         type: "GET",
         url: "api/categories",
-        headers: { "Cache-Control": "no-store" },
+        headers: { "Cache-Control": "max-age = 86400" },
         success: function (res) {
             if(res.isSuccess) {
                 $.each(res.data.categories, function(){
