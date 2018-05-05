@@ -97,6 +97,7 @@ function getMe() {
         success: function (res) {
             if (res.isSuccess) {
                 localStorage.setItem("id", res.data.id);
+                localStorage.setItem("name", res.data.name);
                 document.getElementById("username").innerHTML = res.data.name;
                 var x = document.getElementById('addEvent');
                 x.style.display = 'block';
@@ -149,13 +150,23 @@ function getStatistics() {
 function getCategories() {
     $.get("/api/categories")
     .done(function(res) {
+        console.log(res)
         var content = '';
+        var list = '';
+        var x = document.getElementById("category");
         if(res.isSuccess) {
             $.each(res.data.categories, function(){
                 content += '<li class="category col-sm-4">'+
                                 '<img src="' + this.picture + '" alt="image" class="img-rounded">'+
                                 '<a href="#" onclick="return false;"><span>' + this.name + '</span></a>'+
                             '</li>';
+                
+                            console.log(this.name);
+                            console.log(this._id);
+                var option = document.createElement("option");
+                option.text = this.name;
+                option.value = this._id;
+                x.add(option);
 
                 $('#categoryList').html(content);
             })
@@ -253,20 +264,30 @@ function deleteEvent(id) {
 
 function addEvent() {
     var eventName = document.getElementById("eventName").value;
-    var date = document.getElementById("date").value;
-    var latitude = document.getElementById("latitude").value;
-    var longitude = document.getElementById("longitude").value;
+    var start = document.getElementById("date").value;
     var city = document.getElementById("city").value;
     var town = document.getElementById("town").value;
+    var fullAddress = document.getElementById("fullAddress").value;
+    var photo = document.getElementById("photo").value;
+    var content = document.getElementById("content").value;
+    var category = document.getElementById("category").value;
 
     if (eventName != "" && date != "" && latitude != "" && longitude != "" && city != "" && town != "") {
         var body = {
             title: eventName,
-            CreateDate: new Date(),
+            start: start,
             city: city,
             town: town,
-            photo: "picture",
-            fullAddress: ""
+            photo: photo,
+            fullAddress: fullAddress,
+            user: {
+                userName: localStorage.getItem("name"),
+                id: localStorage.getItem("id")
+            },
+            category: {
+                categoryName: category.categoryName,
+                id: category.id
+            }
         }
 
         $.post("/api/events", body)

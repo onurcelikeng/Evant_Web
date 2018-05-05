@@ -106,34 +106,35 @@ exports.deleteEvent = function (req, res) {
 }
 
 exports.addEvent = function (req, res) {
+    console.log(res);
     var event = new Event({ 
         title: req.body.title, 
-        createDate: req.body.createDate,
+        createDate: moment().format(),
         photo: req.body.photo,
         address: {
             city: req.body.city,
             town: req.body.town,
-            fullAddress: req.body.city + " " + req.body.town
+            fullAddress: req.body.fullAddress
         },
         user: {
-            id: "1",
-            name: document.getElementById("username").innerHTML
+            id: req.body.user.id,
+            name: req.body.user.userName
         },
-        start: "",
-        content: "",
+        start: req.body.date,
+        content: req.body.content,
         category: {
-            id: "1",
-            name: ""
+            id: req.body.category.id,
+            name: req.body.category.categoryName
         }
     });
 
-    event.save( function (err) {
+    /*event.save( function (err) {
         if (err) return res.status(500).send({
             isSuccess: false,
             message: 'Error on the server.'
         });
 
         res.status(200).send({ isSuccess: true, message: "Event added successfully." });
-    });
+    });*/
 };
 
