@@ -150,7 +150,7 @@ function getCategories() {
     $.ajax({
         type: "GET",
         url: "api/categories",
-        headers: { "Cache-Control": "max-age = 60" },
+        headers: { "Cache-Control": "no-store" },
         success: function (res) {
             if(res.isSuccess) {
                 $.each(res.data.categories, function(){
