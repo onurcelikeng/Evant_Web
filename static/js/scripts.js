@@ -161,11 +161,10 @@ function getCategories() {
                                 '<a href="#" onclick="return false;"><span>' + this.name + '</span></a>'+
                             '</li>';
                 
-                            console.log(this.name);
-                            console.log(this._id);
                 var option = document.createElement("option");
                 option.text = this.name;
                 option.value = this._id;
+                console.log(document.getElementById("category"))
                 x.add(option);
 
                 $('#categoryList').html(content);

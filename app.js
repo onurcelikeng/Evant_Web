@@ -7,13 +7,11 @@ var mongoose = require('mongoose');
 var fs = require('fs');
 var config = require('./config');
 var routes = require('./api/routes');
-var compression = require('compression');
 
 // configurations
 var port = process.env.PORT || 3000;
 
 app.set('superSecret', config.secret);
-app.use(compression());
 app.use(express.static('static'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
