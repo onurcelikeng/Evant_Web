@@ -147,25 +147,28 @@ function getStatistics() {
 }
 
 function getCategories() {
-    $.get("/api/categories")
-    .done(function(res) {
-        var content = '';
-        var list = '';
-        if(res.isSuccess) {
-            $.each(res.data.categories, function(){
-                content += '<li class="category col-sm-4">'+
-                                '<img src="' + this.picture + '" alt="image" class="img-rounded">'+
-                                '<a href="#" onclick="return false;"><span>' + this.name + '</span></a>'+
-                            '</li>';
-                list += 	'<option value="' + this._id + '">' + this.name + '</option>';
-
-                $('#categoryList').html(content);
-                document.getElementById("category").innerHTML = list;
-            })
+    $.ajax({
+        type: "GET",
+        url: "api/categories",
+        headers: { "Cache-Control": "max-age = 60" },
+        success: function (res) {
+            if(res.isSuccess) {
+                $.each(res.data.categories, function(){
+                    content += '<li class="category col-sm-4">'+
+                                    '<img src="' + this.picture + '" alt="image" class="img-rounded">'+
+                                    '<a href="#" onclick="return false;"><span>' + this.name + '</span></a>'+
+                                '</li>';
+                    list += 	'<option value="' + this._id + '">' + this.name + '</option>';
+    
+                    $('#categoryList').html(content);
+                    document.getElementById("category").innerHTML = list;
+                })
+            }
+            else console.log(res.message);
+        },
+        error: function (err) {
+            console.log(err);
         }
-    }) 
-    .fail(function() {
-        console.log("error");
     });
 }
 
