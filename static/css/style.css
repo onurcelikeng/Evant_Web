@@ -1,0 +1,413 @@
+@font-face {
+  font-family: "Montserrat-Regular";
+  src: url("../fonts/Montserrat-Regular.otf");
+}
+@font-face {
+  font-family: "Montserrat-Light";
+  src: url("../fonts/Montserrat-Light.otf");
+}
+@font-face {
+  font-family: "Montserrat-Bold";
+  src: url("../fonts/Montserrat-Bold.otf");
+}
+
+@font-face {
+  font-family: "Montserrat-Hairline";
+  src: url("../fonts/Montserrat-Hairline.ttf");
+}
+
+@font-face {
+  font-family: "Champagne-Limousines-Bold";
+  src: url("../fonts/Champagne-Limousines-Bold.ttf");
+}
+
+@font-face {
+  font-family: "Champagne-Limousines";
+  src: url("../fonts/Champagne-Limousines.ttf");
+}
+
+/*--------------------------------------------------------------
+	Body
+--------------------------------------------------------------*/
+body{
+	font-family: "Montserrat-Regular";
+}
+
+/*--------------------------------------------------------------
+	Navbar
+------------------------------------------------------------- */
+.navbar-nav li a{
+    font-size: 17px;
+}
+
+.navbar-brand img{
+	width: 65px;
+}
+
+/*--------------------------------------------------------------
+	Site Header
+------------------------------------------------------------- */
+.site-header{
+	position:relative;
+	background:url(../images/hero-img-min.jpg) no-repeat center center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	height:500px;
+}
+
+.site-header:after{
+	content: "";
+	position:absolute;
+	left:0;
+	right:0;
+	top:0;
+	bottom:0;
+	background: rgba(255,102,0,.9);
+}
+
+.site-header .site-header-content {
+    height: auto;
+    left: 0;
+    margin: auto;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 50%;
+    width: 60%;
+    z-index: 900;
+}
+
+.site-header .site-header-content .site-header-title{
+	font-size:36px;
+	color:#fff;
+	font-family: "Montserrat-Regular";
+	margin:0 0 20px
+}
+
+/*--------------------------------------------------------------
+	Event Add
+------------------------------------------------------------- */
+.section-add{
+	padding:70px 0 35px;
+	background:#fff;
+}
+
+.section-add .section-header {
+	overflow:hidden;
+	margin:0 0 40px;
+	padding:0 0 0 25px;
+}
+
+.section-add .section-header h2{
+	font-size:22px;
+	line-height:22px;
+	color:#373737;
+	text-transform:uppercase;
+	font-family: 'Open Sans', sans-serif;
+	display:block;
+	margin:0 0 25px;
+	font-weight:700;
+	position:relative;
+}
+
+.section-add .section-header h2:before{
+	display:block;
+	width:5px;
+	height:16px;
+	content: "";
+	position:absolute;
+	left:-25px;
+	top:4px;
+	background:#ff6600;
+}
+
+/*--------------------------------------------------------------
+	Events
+------------------------------------------------------------- */
+.events{
+	padding:70px 0 35px;
+	background:#fff
+}
+
+.events .section-header{
+	overflow:hidden;
+	margin:0 0 40px;
+	padding:0 0 0 25px;
+}
+
+.events .section-header h2{
+	font-size:22px;
+	line-height:22px;
+	color:#373737;
+	text-transform:uppercase;
+	font-family: 'Open Sans', sans-serif;
+	display:block;
+	margin:0 0 25px;
+	font-weight:700;
+	position:relative;
+}
+
+.events .section-header h2:before{
+	display:block;
+	width:5px;
+	height:16px;
+	content: "";
+	position:absolute;
+	left:-25px;
+	top:4px;
+	background:#ff6600;
+}
+
+.events .section-header p{
+	color:#6f6f6f;
+	font-size:13px;
+	font-family: "Montserrat-Light";
+	line-height:22px;
+	padding:0 2px;
+	float:left;
+	width:70%;
+}
+
+.events .section-header a{
+	color:#ff6600;
+	border:1px solid #ff6600;
+	background:#fff;
+	display:inline-block;
+	text-decoration:none;
+	font-size:12px;
+	font-family: "Montserrat-Light";
+	padding:13px 25px;
+	border-radius:20px;
+	text-transform:uppercase;
+	font-weight:300;
+}
+
+.events .section-header a:hover{
+	background:#ff6600;
+	color:#fff
+}
+
+.events .section-content ul li{
+	width:30%;
+	float:left;
+	position:relative;
+}
+
+.events .section-content .date{
+	padding:15px;
+	background:rgba(36,36,36, 0.8);
+	position:absolute;
+	top:0;
+	left:20px;
+	text-align:center;
+	text-transform:uppercase;
+	color:#fff;
+}
+
+.events .section-content .date a{
+	color:#fff
+}
+
+.events .section-content .date .day{
+	font-size:30px;
+	display:block;
+	font-family: "Montserrat-Regular";
+	margin:0 0 5px;
+}
+
+.events .section-content .date .month{
+	font-size:10px;
+	display:block;
+	font-family: "Montserrat-Light";
+	margin:0 0 5px;
+}
+
+.events .section-content .date .year{
+	font-size:10px;
+	display:block;
+	font-family: "Montserrat-Light";
+}
+
+.events .section-content .info{
+	padding:50px 20px 25px;
+	position:absolute;
+	bottom:0;
+	left:0;
+	right:0;
+	background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(253,253,253,0) 1%, rgba(28,28,28,1) 100%); 
+	background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(253,253,253,0) 1%,rgba(28,28,28,1) 100%);
+	background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(253,253,253,0) 1%,rgba(28,28,28,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#1c1c1c',GradientType=0 )
+	
+}
+
+.events .section-content .info p{
+	font-size:16px;
+	font-family: "Montserrat-Regular";
+	color:#fff;
+	width:65%;
+	float:left;
+	margin:0;
+}
+
+.events .section-content .info p span{
+	display:block;
+	color:#b3b3b3;
+	font-size:11px;
+	font-family: "Montserrat-Light";
+}
+
+/*--------------------------------------------------------------
+	Section Event Category
+------------------------------------------------------------- */
+.section-event-category{
+	background:#fff;
+	padding:35px 0 40px;
+}
+
+.section-event-category .section-header h2{
+	font-size:22px;
+	line-height:22px;
+	color:#373737;
+	text-transform:uppercase;
+	font-family: 'Open Sans', sans-serif;
+	padding:0 0 0 25px;
+	display:block;
+	margin:0 0 35px;
+	font-weight:700;
+	position:relative;
+}
+
+.section-event-category .section-header h2:before{
+	display:block;
+	width:5px;
+	height:16px;
+	content: "";
+	position:absolute;
+	left:0;
+	top:4px;
+	background:#ff6600;
+}
+
+.section-event-category .section-content ul li{
+	margin:0 0 30px;
+	position:relative
+}
+
+.section-event-category .section-content ul li.category a{
+	background: rgba(68,108,179,.9);
+}
+
+.section-event-category .section-content ul li.category:hover a{
+	background: rgba(68,108,179,.5);
+}
+
+.section-event-category .section-content ul li a{
+	display:block;
+	position:absolute;
+	color:#fff;
+	font-size:26px;
+	text-align:center;
+	text-decoration:none;
+	top:0;
+	bottom:0;
+	left:15px;
+	right:15px;
+	text-transform:uppercase;
+}
+
+.section-event-category .section-content ul li a span{
+	display:block;
+	height: 26px;
+	width:80%;
+	line-height:26px;
+	position:absolute;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	margin:auto;
+	font-family: "Montserrat-Light";
+}
+
+/*--------------------------------------------------------------
+	Section Ticket Count
+------------------------------------------------------------- */
+.section-statistics{
+	padding:100px 0;
+	background: url(../images/stats.jpg) no-repeat center center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	position:relative
+}
+
+.section-statistics:before{
+	content: "";
+	position:absolute;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	background:rgba(36,36,36, 0.8)
+}
+
+.section-statistics .section-content ul li{
+	text-align:center;
+}
+
+.section-statistics .section-content ul li span{
+	color:#fff;
+	display:block;
+	font-size:50px;
+	line-height:50px;
+	font-family: "Montserrat-Regular";
+}
+
+.section-statistics .section-content hr{
+	background:#fff;
+	height:2px;
+	width:45px;
+	margin:30px auto;
+}
+
+.section-statistics .section-content ul li p{
+	color:#fff;
+	display:block;
+	font-size:19px;
+	line-height:19px;
+	margin:0;
+	text-transform:uppercase;
+	font-family: "Montserrat-Regular";
+}
+
+/*--------------------------------------------------------------
+	Site Footer
+--------------------------------------------------------------*/
+.top-footer{
+	background:#1f1f1f;
+	padding:30px 0;
+	border-top:8px solid #4e4e4e;
+	border-bottom:1px solid #111;
+}
+
+.top-footer a img{
+	max-height:35px;
+	width:auto;
+}
+
+.top-footer p{
+	margin:10px 30px 10px 0;
+	color:#ccc;
+	font-size:10px;
+}
+
+/*--------------------------------------------------------------
+	Modal
+------------------------------------------------------------- */
+.modal-buttons{
+    text-align: right;
+}

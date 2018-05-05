@@ -35,7 +35,6 @@ function login() {
 }
 
 function logout() {
-    // expire date = -1
     localStorage.clear();
     x = document.getElementById('loggedOutPanel');
     x.style.display = 'block';
