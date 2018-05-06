@@ -288,6 +288,19 @@
 		<!-- Scripts -->
 
 		<script src="js/jquery.min.js"></script>
+		<script>
+			var cssArray = ["css/bootstrap.min.css", "css/style.min.css", "css/font-awesome.min.css", "css/bootstrap-select.min.css", "css/core.min.css", "css/responsive.min.css"];
+			cssArray.forEach(element => {
+				var head = document.getElementsByTagName('head')[0];
+
+				var style = document.createElement('link');
+				style.href = element;
+				style.type = 'text/css';
+				style.rel = 'stylesheet';
+				head.append(style);
+			});
+			
+		</script>
 		<script async src="js/bootstrap.min.js"></script>
 		<script async src="js/bootstrap-select.min.js"></script>
 		<script async src="js/scripts.min.js"></script>
@@ -333,19 +346,6 @@
 					console.log(err);
 				}
 			});
-		</script>
-		<script>
-			var cssArray = ["css/bootstrap.min.css", "css/style.min.css", "css/font-awesome.min.css", "css/bootstrap-select.min.css", "css/core.min.css", "css/responsive.min.css"];
-			cssArray.forEach(element => {
-				var head = document.getElementsByTagName('head')[0];
-
-				var style = document.createElement('link');
-				style.href = element;
-				style.type = 'text/css';
-				style.rel = 'stylesheet';
-				head.append(style);
-			});
-			
 		</script>
 	</body>
 </html>
