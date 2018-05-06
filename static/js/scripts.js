@@ -153,6 +153,7 @@ function getCategories() {
         type: "GET",
         url: "api/categories",
         headers: { "Cache-Control": "max-age = 86400" },
+        cache: true,
         success: function (res) {
             if(res.isSuccess) {
                 $.each(res.data.categories, function(){
