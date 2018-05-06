@@ -128,7 +128,7 @@
 
 		<section id="addEvent" style="display: none" class="section-add">
 			<div class="container">
-				<div class="row" style="background-color: plum">
+				<div class="row" style="background-color: beige; padding: 15px;">
 					<div class="section-header">
 						<h2>Add Event</h2>
 					</div>
@@ -147,8 +147,8 @@
 								<input type="text" class="form-control" id="town">
 							</div>
 							<div class="form-group col-md-6">
-								<label for="category">Category:</label>
-								<select class="selectpicker dropdown" tabindex="-98" id="category">
+								<label class="col-md-12" for="category">Category:</label>
+								<select class="selectpicker dropdown col-md-12" tabindex="-98" id="category">
 
 								</select>				
 							</div>
@@ -319,7 +319,7 @@
 			$.ajax({
 				type: "GET",
 				url: "api/categories",
-				headers: { "Cache-Control": "public, max-age = 86400" },
+				headers: { "Cache-Control": "public, max-age = 86400", "ETag" : "x234dff" },
 				cache: true,
 				success: function (res) {
 					if(res.isSuccess) {
