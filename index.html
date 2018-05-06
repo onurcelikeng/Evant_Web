@@ -128,7 +128,7 @@
 
 		<section id="addEvent" style="display: none" class="section-add">
 			<div class="container">
-				<div class="row">
+				<div class="row" style="background-color: plum">
 					<div class="section-header">
 						<h2>Add Event</h2>
 					</div>
@@ -167,6 +167,9 @@
 							<div class="form-group col-md-12">
 								<label for="content">Content:</label>
 								<textarea class="form-group col-md-12" id="content" rows="5"></textarea>
+							</div>
+							<div class="form-group col-md-12">
+								<label style="color: red; font-size: 13px" id="add-error-label"></label>
 							</div>
 							<button type="button" class="btn btn-default alignright" onclick="addEvent()">Add</button>
 						</form>
@@ -212,8 +215,8 @@
 								<label>Password:</label>
 								<input type="password" class="form-control" id="password">
 							</div>
-							<div class="checkbox">
-								<label><input type="checkbox"> Remember me</label>
+							<div class="form-group">
+								<label style="color: red; font-size: 13px" id="login-error-label"></label>
 							</div>
 							<div class="modal-buttons">
 								<input type="button" class="btn btn-default" id="loginButton" value="Submit" onclick="login()"/>
@@ -250,8 +253,8 @@
 								<label for="repwd">Password Again:</label>
 								<input type="password" class="form-control" id="repwd">
 							</div>
-							<div class="checkbox">
-								<label><input type="checkbox"> Remember me</label>
+							<div class="form-group">
+								<label style="color: red; font-size: 13px" id="register-error-label"></label>
 							</div>
 							<div class="modal-buttons">
 								<input type="button" class="btn btn-default" id="registerButton" value="Submit" onclick="signup()"/>
@@ -294,7 +297,7 @@
 		<script src="js/jquery.min.js"></script>
 		<script async src="js/bootstrap.min.js"></script>
 		<script async src="js/bootstrap-select.min.js"></script>
-		<script async src="js/scripts.min.js"></script>
+		<script async src="js/scripts.js"></script>
 		<script>
 			$(document).ready(function(){			
 				$(".navbar a, footer a[href='#home']").on('click', function(event) {

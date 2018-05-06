@@ -22,14 +22,14 @@ function login() {
                 $('#loginModal').modal('hide');
                 closeLoginModal();
             }
-            else console.log(res.message);
+            else document.getElementById('login-error-label').innerHTML = res.message;
         })
         .fail(function() {
-            console.log("login error");
+            document.getElementById('login-error-label').innerHTML = "An error occured, please try again.";
         });
     }    
     else {
-        console.log("Missing values");
+        document.getElementById('login-error-label').innerHTML = "Please fill out all the boxes.";
     }
 }
 
@@ -66,23 +66,27 @@ function signup() {
                             $('#signupModal').modal('hide');
                             closeSignupModal();
                        }
-                       else console.log(res.message);
+                       else {
+                        document.getElementById('register-error-label').innerHTML = res.message;
+                       }
                     })
                     .fail(function() {
-                       console.log("login error");
+                        document.getElementById('register-error-label').innerHTML = "You successfully registered but an error occured while we tried to log in you to our system. Please try to login later.";
                     });
-                } else console.log(res.message);
+                } else {
+                    document.getElementById('register-error-label').innerHTML = res.message;
+                }
             })
             .fail(function() {
-                console.log("register error");
+                document.getElementById('register-error-label').innerHTML = "An error occured. Please try again.";
             });
         }
         else {
-            console.log("Control your password.")
+            document.getElementById('register-error-label').innerHTML = "Control your password.";
         }
     }
     else {
-        console.log("Missing values.")
+        document.getElementById('register-error-label').innerHTML = "Please fill all the boxes.";
     }
 }
 
@@ -307,28 +311,28 @@ function addEvent() {
                 $.post("/api/events", body)
                 .done(function(res) {
                     if (res.isSuccess) {
-                        console.log(res.message);
                         getEvents();
                     }
-                    else console.log(res.message);
+                    else document.getElementById('add-error-label').innerHTML = res.message;
                 })
                 .fail(function() {
-                    console.log("add event error");
+                    document.getElementById('add-error-label').innerHTML = "An error occured, please try again.";
                 });
             },
             error: function(jqXHR, textStatus, errorMessage) {
-                console.log(errorMessage);
+                document.getElementById('add-error-label').innerHTML = errorMessage;
             }
         });
     }
     else {
-        console.log("Missing values.")
+        document.getElementById('add-error-label').innerHTML = "Please fill out all the boxes.";
     }
 }
 
 function closeLoginModal() {
     document.getElementById("email").value = "";
     document.getElementById("password").value = "";
+    document.getElementById('login-error-label').innerHTML = "";
 }
 
 function closeSignupModal() {
@@ -336,4 +340,5 @@ function closeSignupModal() {
     document.getElementById("mail").value = "";
     document.getElementById("pwd").value = "";
     document.getElementById("repwd").value = "";
+    document.getElementById('register-error-label').innerHTML = "";
 }
