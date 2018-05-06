@@ -35,7 +35,7 @@ exports.register = function (req, res) {
             });
         } 
 
-        res.status(200).send({ isSuccess: false, message: "This email is already registered. Please try a different email address or login." });
+        res.set({'Cache-Control': 'public, max-age = 36500'}).status(200).send({ isSuccess: false, message: "This email is already registered. Please try a different email address or login." });
     });
 
 
@@ -59,7 +59,7 @@ exports.login = function (req, res) {
             expiresIn: 86400 //expires in 24 hours
         });
 
-        res.status(200).send({ isSuccess: true, token: token });
+        res.set({'Cache-Control': 'public, max-age = 36500'}).status(200).send({ isSuccess: true, token: token });
     });
 }
 
@@ -80,7 +80,7 @@ exports.me = function (req, res) {
                 isSuccess: false,
                 message: 'Email not exists.'
             });
-            res.status(200).send({
+            res.set({'Cache-Control': 'public, max-age = 36500'}).status(200).send({
                 isSuccess: true,
                 data: {
                     name: user.name,
@@ -103,7 +103,7 @@ exports.userCount = function (req, res) {
             message: 'Error occured.'
         });
 
-        res.status(200).send({
+        res.set({'Cache-Control': 'public, max-age = 36500'}).status(200).send({
             isSuccess: true,
             data: {
                 userCount: count

@@ -33,7 +33,7 @@ exports.categoryCount = function (req, res) {
             message: 'Error occured.'
         });
 
-        res.status(200).send({
+        res.set({'Cache-Control': 'public, max-age = 36500'}).status(200).send({
             isSuccess: true,
             data: {
                 categoryCount: count
