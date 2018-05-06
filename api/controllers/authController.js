@@ -35,7 +35,8 @@ exports.register = function (req, res) {
             });
         } 
 
-        res.set({'Cache-Control': 'public, max-age = 36500', 'Expires': 'Wed, 21 Oct 2019 07:28:00 GMT'}).status(200).send({ isSuccess: false, message: "This email is already registered. Please try a different email address or login." });
+        res.set({'Cache-Control': 'public, max-age = 36500', 'Expires': new Date(Date.now() + 2592000000).toUTCString()
+    }).status(200).send({ isSuccess: false, message: "This email is already registered. Please try a different email address or login." });
     });
 
 
@@ -59,7 +60,7 @@ exports.login = function (req, res) {
             expiresIn: 86400 //expires in 24 hours
         });
 
-        res.set({'Cache-Control': 'public, max-age = 36500', 'Expires': 'Wed, 21 Oct 2019 07:28:00 GMT'}).status(200).send({ isSuccess: true, token: token });
+        res.set({'Cache-Control': 'public, max-age = 36500', 'Expires': new Date(Date.now() + 2592000000).toUTCString()}).status(200).send({ isSuccess: true, token: token });
     });
 }
 
@@ -80,7 +81,7 @@ exports.me = function (req, res) {
                 isSuccess: false,
                 message: 'Email not exists.'
             });
-            res.set({'Cache-Control': 'public, max-age = 36500', 'Expires': 'Wed, 21 Oct 2019 07:28:00 GMT'}).status(200).send({
+            res.set({'Cache-Control': 'public, max-age = 36500', 'Expires': new Date(Date.now() + 2592000000).toUTCString()}).status(200).send({
                 isSuccess: true,
                 data: {
                     name: user.name,
@@ -103,7 +104,7 @@ exports.userCount = function (req, res) {
             message: 'Error occured.'
         });
 
-        res.set({'Cache-Control': 'public, max-age = 36500', 'Expires': 'Wed, 21 Oct 2019 07:28:00 GMT'}).status(200).send({
+        res.set({'Cache-Control': 'public, max-age = 36500', 'Expires': new Date(Date.now() + 2592000000).toUTCString()}).status(200).send({
             isSuccess: true,
             data: {
                 userCount: count
