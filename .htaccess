@@ -19,3 +19,6 @@ ExpiresByType application/pdf "access plus 1 month"
 ExpiresByType text/x-javascript "access plus 1 month"
 ExpiresByType application/x-shockwave-flash "access plus 1 month"
 </IfModule>
+<FilesMatch "\.(gif|jpeg|png|html|css|js)$">
+FileETag INode MTime Size
+</FilesMatch>
