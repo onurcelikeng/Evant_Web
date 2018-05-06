@@ -115,7 +115,7 @@ function getMe() {
 }
 
 function getStatistics() { 
-   /* $.get("/api/categories/count")
+    $.get("/api/categories/count")
     .done(function(res) {
         if(res.isSuccess) {
             document.getElementById("categoryCount").innerHTML = res.data.categoryCount;
@@ -143,16 +143,16 @@ function getStatistics() {
     }) 
     .fail(function() {
         console.log("error");
-    });*/
+    });
 }
 
 function getCategories() {
     var content = '';
     var list = '';
-   /* $.ajax({
+    $.ajax({
         type: "GET",
         url: "api/categories",
-        headers: { "Cache-Control": "private, max-age = 600" },
+        headers: { "Cache-Control": "max-age = 86400" },
         cache: true,
         success: function (res) {
             if(res.isSuccess) {
@@ -172,11 +172,11 @@ function getCategories() {
         error: function (err) {
             console.log(err);
         }
-    });*/
+    });
 }
 
 function getEvents() {
-   /* $.get("/api/events")
+    $.get("/api/events")
     .done(function(res) {
         var content = '';
         if(res.isSuccess) {
@@ -203,7 +203,7 @@ function getEvents() {
     }) 
     .fail(function() {
         console.log("error");
-    });*/
+    });
 }
 
 function getEventDetail(id) {
