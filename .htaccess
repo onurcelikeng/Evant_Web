@@ -77,4 +77,7 @@
     ExpiresByType text/css "access plus 1 month"
     # Javascript 
     ExpiresByType application/javascript "access plus 1 year"
+    <FilesMatch "\.(jpg|jpeg|png|gif|swf)$">
+    Header set Cache-Control "max-age=604800, public"
+</FilesMatch>
 </IfModule>
