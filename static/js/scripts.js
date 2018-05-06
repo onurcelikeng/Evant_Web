@@ -1,7 +1,6 @@
 initialize();
 getEvents();
 getStatistics();
-getCategories();
 
 function initialize() {
     var token = localStorage.getItem("token");
@@ -156,15 +155,16 @@ function getCategories() {
         cache: true,
         success: function (res) {
             if(res.isSuccess) {
+                $('#category').empty();
                 $.each(res.data.categories, function(){
                     content += '<li class="category col-sm-4">'+
                                     '<img src="' + this.picture + '" alt="image" class="img-rounded">'+
                                     '<a href="#" onclick="return false;"><span>' + this.name + '</span></a>'+
                                 '</li>';
-                    list += 	'<option value="' + this._id + '">' + this.name + '</option>';
+                    list = 	'<option value="' + this._id + '">' + this.name + '</option>';
     
                     $('#categoryList').html(content);
-                    document.getElementById("category").innerHTML = list;
+                    $('#category').append(list);
                 })
             }
             else console.log(res.message);

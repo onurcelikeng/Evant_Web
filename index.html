@@ -310,5 +310,34 @@
 				});
 			});
 		</script>
+		<script>
+			var content = '';
+			var list = '';
+			$.ajax({
+				type: "GET",
+				url: "api/categories",
+				headers: { "Cache-Control": "public, max-age = 86400" },
+				cache: true,
+				success: function (res) {
+					if(res.isSuccess) {
+						$('#category').empty();
+						$.each(res.data.categories, function(){
+							content += '<li class="category col-sm-4">'+
+											'<img src="' + this.picture + '" alt="image" class="img-rounded">'+
+											'<a href="#" onclick="return false;"><span>' + this.name + '</span></a>'+
+										'</li>';
+							list = 	'<option value="' + this._id + '">' + this.name + '</option>';
+			
+							$('#categoryList').html(content);
+							$('#category').append(list);
+						})
+					}
+					else console.log(res.message);
+				},
+				error: function (err) {
+					console.log(err);
+				}
+			});
+		</script>
 	</body>
 </html>
