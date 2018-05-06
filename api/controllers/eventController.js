@@ -16,7 +16,7 @@ exports.eventCount = function (req, res) {
             message: 'Error occured.'
         });
 
-        res.set({'Cache-Control': 'public, max-age = 36500'}).status(200).send({
+        res.set({'Cache-Control': 'public, max-age = 36500', 'Expires': 'Wed, 21 Oct 2019 07:28:00 GMT'}).status(200).send({
             isSuccess: true,
             data: {
                 eventCount: count
@@ -52,7 +52,7 @@ exports.events = function (req, res) {
             });
         });
 
-        res.set({'Cache-Control': 'public, max-age = 36500'}).status(200).send({
+        res.set({'Cache-Control': 'public, max-age = 36500', 'Expires': 'Wed, 21 Oct 2019 07:28:00 GMT'}).status(200).send({
             isSuccess: true,
             data: {
                 events: list
@@ -72,7 +72,7 @@ exports.eventDetail = function (req, res) {
             message: 'Error occured.'
         });
 
-        res.set({'Cache-Control': 'public, max-age = 36500'}).status(200).send({
+        res.set({'Cache-Control': 'public, max-age = 36500', 'Expires': 'Wed, 21 Oct 2019 07:28:00 GMT'}).status(200).send({
             isSuccess: true,
             data: {
                 id: event._id,
@@ -97,7 +97,7 @@ exports.deleteEvent = function (req, res) {
             message: 'Error on the server.'
         });
 
-        res.set({'Cache-Control': 'public, max-age = 36500'}).status(200).send({ isSuccess: true, message: "Event deleted successfully." });
+        res.set({'Cache-Control': 'public, max-age = 36500', 'Expires': 'Wed, 21 Oct 2019 07:28:00 GMT'}).status(200).send({ isSuccess: true, message: "Event deleted successfully." });
     });
 }
 
@@ -132,7 +132,7 @@ exports.addEvent = function (req, res) {
             message: 'Error on the server.'
         });
 
-        res.set({'Cache-Control': 'public, max-age = 36500'}).status(200).send({ isSuccess: true, message: "Event added successfully." });
+        res.set({'Cache-Control': 'public, max-age = 36500', 'Expires': 'Wed, 21 Oct 2019 07:28:00 GMT'}).status(200).send({ isSuccess: true, message: "Event added successfully." });
     });
 };
 
