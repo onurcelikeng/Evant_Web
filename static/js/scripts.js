@@ -152,7 +152,7 @@ function getCategories() {
     $.ajax({
         type: "GET",
         url: "api/categories",
-        headers: { "Cache-Control": "max-age = 86400" },
+        headers: { "Cache-Control": "private, max-age = 600" },
         cache: true,
         success: function (res) {
             if(res.isSuccess) {
