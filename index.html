@@ -319,7 +319,6 @@
 			$.ajax({
 				type: "GET",
 				url: "api/categories",
-				headers: { "Cache-Control": "public, max-age = 86400", "ETag" : "x234dff" },
 				cache: true,
 				success: function (res) {
 					if(res.isSuccess) {

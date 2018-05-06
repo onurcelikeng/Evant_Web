@@ -311,6 +311,7 @@ function addEvent() {
                 $.post("/api/events", body)
                 .done(function(res) {
                     if (res.isSuccess) {
+                        document.getElementById('add-error-label').innerHTML = "";
                         getEvents();
                     }
                     else document.getElementById('add-error-label').innerHTML = res.message;
