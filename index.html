@@ -5,20 +5,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="Expires" content="30" />
 		<title>Evant</title>
-		
-		<script>
-			var cssArray = ["css/bootstrap.min.css", "css/style.min.css", "css/font-awesome.min.css", "css/bootstrap-select.min.css", "css/core.min.css", "css/responsive.min.css"];
-			cssArray.forEach(element => {
-				var head = document.getElementsByTagName('head')[0];
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/style.min.css">
 
-				var style = document.createElement('link');
-				style.href = element;
-				style.type = 'text/css';
-				style.rel = 'stylesheet';
-				head.append(style);
-			});
-			
-		</script>
 		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 		<link rel="icon" href="images/favicon.ico" type="image/x-icon">
 	</head>
@@ -301,7 +290,19 @@
 		<!-- Scripts -->
 
 		<script src="js/jquery.min.js"></script>
-		
+		<script>
+			var cssArray = ["css/font-awesome.min.css", "css/bootstrap-select.min.css", "css/core.min.css", "css/responsive.min.css"];
+			cssArray.forEach(element => {
+				var head = document.getElementsByTagName('head')[0];
+
+				var style = document.createElement('link');
+				style.href = element;
+				style.type = 'text/css';
+				style.rel = 'stylesheet';
+				head.append(style);
+			});
+			
+		</script>
 		<script async src="js/bootstrap.min.js"></script>
 		<script async src="js/bootstrap-select.min.js"></script>
 		<script async src="js/scripts.min.js"></script>
