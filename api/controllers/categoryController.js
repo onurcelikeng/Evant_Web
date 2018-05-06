@@ -13,7 +13,7 @@ exports.categories = function (req, res) {
             message: '0 category found.'
         });
         
-        res.set({'Cache-Control': 'public, max-age = 36500', 'Expires': new Date(Date.now() + 2592000000).toUTCString()}).status(200).send({
+        res.set({'Cache-Control': 'no-cache'}).status(200).send({
             isSuccess: true,
             data: {
                 categories: categories
