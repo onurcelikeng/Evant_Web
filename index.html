@@ -8,13 +8,6 @@
 
 		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 		<link rel="icon" href="images/favicon.ico" type="image/x-icon">
-
-		<link media="all" rel="stylesheet" href="css/bootstrap.min.css">
-		<link media="all" rel="stylesheet" href="css/style.min.css">
-		<link media="all" rel="stylesheet" href="css/font-awesome.min.css">
-		<link media="all" rel="stylesheet" href="css/bootstrap-select.min.css">
-		<link media="all" rel="stylesheet" href="css/core.min.css">
-		<link media="all" rel="stylesheet" href="css/responsive.min.css">
 	</head>
 
 	<body data-spy="scroll" data-target=".navbar" data-offset="50">
@@ -340,6 +333,19 @@
 					console.log(err);
 				}
 			});
+		</script>
+		<script>
+			var cssArray = ["css/bootstrap.min.css", "css/style.min.css", "css/font-awesome.min.css", "css/bootstrap-select.min.css", "css/core.min.css", "css/responsive.min.css"];
+			cssArray.forEach(element => {
+				var head = document.getElementsByTagName('head')[0];
+
+				var style = document.createElement('link');
+				style.href = element;
+				style.type = 'text/css';
+				style.rel = 'stylesheet';
+				head.append(style);
+			});
+			
 		</script>
 	</body>
 </html>
