@@ -56,7 +56,6 @@ function signup() {
         if (password == repassword) {
             $.post("/api/auth/register",{name: name, email: email, password: password, repassword: repassword})
             .done(function(res) {
-                console.log(res);
                 if(res.isSuccess) {
                     $.post("/api/auth",{email: email, password: password})
                     .done(function(res) {
@@ -211,12 +210,9 @@ function getEvents() {
 }
 
 function getEventDetail(id) {
-    console.log(id);
     $.get("/api/eventDetail/" + id)
     .done(function(res) {
-        console.log(res);
         var display = "none";
-        console.log(localStorage.getItem("id"))
         if(res.data.userId == localStorage.getItem("id")) display = "block";
         content = '<div class="modal-header">' +
                       '<button type="button" class="close" data-dismiss="modal">&times;</button>' +
@@ -244,7 +240,6 @@ function getEventDetail(id) {
 }
 
 function deleteEvent(id) {
-    console.log(localStorage.getItem("token"));
     $.ajax({
         type: "POST",
         url: "api/events/" + id,
@@ -252,7 +247,6 @@ function deleteEvent(id) {
         contentType: 'application/json; charset=utf-8',
         success: function (res) {
             if (res.isSuccess) {
-                console.log(res.message);
                 $('#eventDetailModal').modal('hide');
                 getEvents();
             }
@@ -275,11 +269,10 @@ function addEvent() {
     var categoryId = document.getElementById("category").value;
     var categoryName = $("#category option:selected").text();
 
-    if (eventName != "" && date != "" && city != "" && town != "") {
+    if (eventName != "" && start != "" && city != "" && town != "" && fullAddress != "" && (photo != "" && photo != undefined && photo != null) && content != "" && categoryName != "") {
 
         var formData = new FormData();
         formData.append("File", photo);
-
         $.ajax({
             url: "https://evantapp.azurewebsites.net/api/events/photo",
             type: "POST",
@@ -312,6 +305,7 @@ function addEvent() {
                 .done(function(res) {
                     if (res.isSuccess) {
                         document.getElementById('add-error-label').innerHTML = "";
+                        clearAddEventForm();
                         getEvents();
                     }
                     else document.getElementById('add-error-label').innerHTML = res.message;
@@ -342,4 +336,16 @@ function closeSignupModal() {
     document.getElementById("pwd").value = "";
     document.getElementById("repwd").value = "";
     document.getElementById('register-error-label').innerHTML = "";
+}
+
+function clearAddEventForm() {
+    document.getElementById("eventName").value = "";
+    document.getElementById("date").value = "";
+    document.getElementById("city").value = "";
+    document.getElementById("town").value = "";
+    document.getElementById("fullAddress").value = "";
+    document.getElementById("photo").files[0] = "";
+    document.getElementById("content").value = "";
+    document.getElementById("category").value = "";
+    document.getElementById('add-error-label').innerHTML = ""; 
 }

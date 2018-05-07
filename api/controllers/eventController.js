@@ -91,7 +91,7 @@ exports.eventDetail = function (req, res) {
 exports.deleteEvent = function (req, res) {
     var token = req.headers['authorization'];
 
-    Event.findOneAndUpdate({_id: ObjectId(req.params.id)}, { $set: { isDeleted: true }},null, function (err, response) {
+    Event.findOneAndUpdate({_id: ObjectId(req.params.id)}, { $set: { isDeleted: true }}, null, function (err, response) {
         if (err) return res.status(500).send({
             isSuccess: false,
             message: 'Error on the server.'
@@ -102,7 +102,6 @@ exports.deleteEvent = function (req, res) {
 }
 
 exports.addEvent = function (req, res) {
-    console.log(req.body);
     var event = new Event({ 
         title: req.body.title, 
         createDate: moment().format(),
@@ -126,7 +125,6 @@ exports.addEvent = function (req, res) {
     });
 
     event.save( function (err) {
-        console.log(err)
         if (err) return res.status(500).send({
             isSuccess: false,
             message: 'Error on the server.'

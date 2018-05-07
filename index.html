@@ -142,10 +142,8 @@
 								<input type="text" class="form-control" id="town">
 							</div>
 							<div class="form-group col-md-6">
-								<label class="col-md-12" for="category">Category:</label>
-								<select class="selectpicker dropdown col-md-12" tabindex="-98" id="category">
-
-								</select>				
+								<label for="category">Category:</label>
+								<select class="selectpicker dropdown form-control" tabindex="-98" id="category"></select>				
 							</div>
 							<div class="form-group col-md-12">
 								<label for="fullAddress">Full Address:</label>
@@ -161,7 +159,7 @@
 							</div>
 							<div class="form-group col-md-12">
 								<label for="content">Content:</label>
-								<textarea class="form-group col-md-12" id="content" rows="5"></textarea>
+								<textarea class="form-control" id="content" rows="5"></textarea>
 							</div>
 							<div class="form-group col-md-12">
 								<label style="color: red; font-size: 13px" id="add-error-label"></label>
@@ -269,10 +267,10 @@
 						<h4 class="modal-title">Logout</h4>
 					</div>
 					<div class="modal-body">
-						<div>Are you sure?</div>
+						<div>Are you sure you want to log out?</div>
 						<div class="modal-buttons">
 							<button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-							<input type="button" class="btn btn-default" id="loginButton" value="Yes" onclick="logout()"/>
+							<input type="button" class="btn btn-default" id="loginButton" value="Log Out" onclick="logout()"/>
 						</div>
 					</div>
 				</div>
@@ -305,7 +303,7 @@
 		</script>
 		<script async src="js/bootstrap.min.js"></script>
 		<script async src="js/bootstrap-select.min.js"></script>
-		<script async src="js/scripts.min.js"></script>
+		<script async src="js/scripts.js"></script>
 		<script>
 			$(document).ready(function(){			
 				$(".navbar a, footer a[href='#home']").on('click', function(event) {

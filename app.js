@@ -21,7 +21,7 @@ routes(app);
 
 var indexHtml;
 
-fs.readFile("index.min.html", "utf8", function (err, data) {
+fs.readFile("index.html", "utf8", function (err, data) {
   if (err != null) {
     console.log("index file reading error process exiting the error is:" + err);
     setTimeout(process.exit(1), 10000);

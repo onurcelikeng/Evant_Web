@@ -15,6 +15,11 @@ module.exports = mongoose.model('Event', new Schema({
     format: Date,
     required: true
   },
+  start: {
+    type: String,
+    format: Date,
+    required: true
+  },
   content: {
     type: String,
     required: true
