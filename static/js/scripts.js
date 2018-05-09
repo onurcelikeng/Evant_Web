@@ -17,20 +17,19 @@ function login() {
         $.ajax({
             type: "POST",
             url: "api/auth",
-            data: {email: email, password: password},
-            contentType: 'application/json; charset=utf-8',
-            success: function (res) {
-                if (res.isSuccess) {
-                    localStorage.setItem("token", res.token);
-                    getMe();     
-                    $('#loginModal').modal('hide');
-                    closeLoginModal();
-                }
-                else document.getElementById('login-error-label').innerHTML = res.message;
-            },
-            error: function (err) {
-                document.getElementById('login-error-label').innerHTML = "An error occured, please try again.";
+            data: {email: email, password: password}
+        })
+        .done(function(res) {
+            if (res.isSuccess) {
+                localStorage.setItem("token", res.token);
+                getMe();     
+                $('#loginModal').modal('hide');
+                closeLoginModal();
             }
+            else document.getElementById('login-error-label').innerHTML = res.message;
+        })
+        .fail(function(err) {
+            document.getElementById('login-error-label').innerHTML = "An error occured, please try again.";
         });
     }    
     else {
@@ -63,34 +62,32 @@ function signup() {
             $.ajax({
                 type: "POST",
                 url: "api/auth/register",
-                data: {name: name, email: email, password: password, repassword: repassword},
-                contentType: 'application/json; charset=utf-8',
-                success: function (res) {
-                    if (res.isSuccess) {
-                        $.ajax({
-                            type: "POST",
-                            url: "api/auth",
-                            data: {email: email, password: password},
-                            contentType: 'application/json; charset=utf-8',
-                            success: function (res) {
-                                if (res.isSuccess) {
-                                    localStorage.setItem("token", res.token);
-                                    getMe();     
-                                    $('#loginModal').modal('hide');
-                                    closeLoginModal();
-                                }
-                                else document.getElementById('register-error-label').innerHTML = res.message;
-                            },
-                            error: function (err) {
-                                document.getElementById('register-error-label').innerHTML = "An error occured, please try again.";
-                            }
-                        });
-                    }
-                    else document.getElementById('register-error-label').innerHTML = res.message;
-                },
-                error: function (err) {
-                    document.getElementById('register-error-label').innerHTML = "An error occured, please try again.";
+                data: {name: name, email: email, password: password, repassword: repassword}
+            })
+            .done(function(res) {
+                if (res.isSuccess) {
+                    $.ajax({
+                        type: "POST",
+                        url: "api/auth",
+                        data: {email: email, password: password},
+                    })
+                    .done(function(res) {
+                        if (res.isSuccess) {
+                            localStorage.setItem("token", res.token);
+                            getMe();     
+                            $('#signupModal').modal('hide');
+                            closeSignupModal();
+                        }
+                        else document.getElementById('register-error-label').innerHTML = res.message;
+                    })
+                    .fail(function(err) {
+                        document.getElementById('register-error-label').innerHTML = "An error occured, please try again.";
+                    });
                 }
+                else document.getElementById('register-error-label').innerHTML = res.message;
+            })
+            .fail(function(err) {
+                document.getElementById('register-error-label').innerHTML = "An error occured, please try again.";
             });
         }
         else {
@@ -106,70 +103,66 @@ function getMe() {
     $.ajax({
         type: "GET",
         url: "api/auth/me",
-        headers: { "authorization": localStorage.getItem("token") },
-        contentType: 'application/json; charset=utf-8',
-        success: function (res) {
-            if (res.isSuccess) {
-                sessionStorage.id = res.data.id;
-                sessionStorage.name = res.data.name;
-                document.getElementById("username").innerHTML = res.data.name;
-                var x = document.getElementById('addEvent');
-                x.style.display = 'block';
-                x = document.getElementById('addEventItem');
-                x.style.display = 'inline';
-                x = document.getElementById('loggedOutPanel');
-                x.style.display = 'none';
-                x = document.getElementById('loggedInPanel');
-                x.style.display = 'block';
-            }
-        },
-        error: function (err) {
-            console.log(err);
+        headers: { "authorization": localStorage.getItem("token") }
+    })
+    .done(function (res) {
+        if (res.isSuccess) {
+            sessionStorage.id = res.data.id;
+            sessionStorage.name = res.data.name;
+            document.getElementById("username").innerHTML = res.data.name;
+            var x = document.getElementById('addEvent');
+            x.style.display = 'block';
+            x = document.getElementById('addEventItem');
+            x.style.display = 'inline';
+            x = document.getElementById('loggedOutPanel');
+            x.style.display = 'none';
+            x = document.getElementById('loggedInPanel');
+            x.style.display = 'block';
         }
+    })
+    .fail(function (err) {
+        console.log(err);
     });
 }
 
 function getStatistics() { 
     $.ajax({
         type: "GET",
-        url: "api/categories/count",
-        contentType: 'application/json; charset=utf-8',
-        success: function (res) {
-            if (res.isSuccess) {
-                document.getElementById("categoryCount").innerHTML = res.data.categoryCount;
-            }
-        },
-        error: function (err) {
-            console.log(err);
+        url: "api/categories/count"
+    })
+    .done(function (res) {
+        if (res.isSuccess) {
+            document.getElementById("categoryCount").innerHTML = res.data.categoryCount;
         }
+    })
+    .fail(function (err) {
+        console.log(err);
     });
 
     $.ajax({
         type: "GET",
-        url: "api/auth/count",
-        contentType: 'application/json; charset=utf-8',
-        success: function (res) {
-            if (res.isSuccess) {
-                document.getElementById("activeUserCount").innerHTML = res.data.userCount;
-            }
-        },
-        error: function (err) {
-            console.log(err);
+        url: "api/auth/count"
+    })
+    .done(function (res) {
+        if (res.isSuccess) {
+            document.getElementById("activeUserCount").innerHTML = res.data.userCount;
         }
+    })
+    .fail(function (err) {
+        console.log(err);
     });
 
     $.ajax({
         type: "GET",
-        url: "api/events/count",
-        contentType: 'application/json; charset=utf-8',
-        success: function (res) {
-            if (res.isSuccess) {
-                document.getElementById("eventCount").innerHTML = res.data.eventCount;
-            }
-        },
-        error: function (err) {
-            console.log(err);
+        url: "api/events/count"
+    })
+    .done(function (res) {
+        if (res.isSuccess) {
+            document.getElementById("eventCount").innerHTML = res.data.eventCount;
         }
+    })
+    .fail(function (err) {
+        console.log(err);
     });
 }
 
@@ -180,100 +173,98 @@ function getCategories() {
         type: "GET",
         url: "api/categories",
         headers: { "Cache-Control": "public, max-age = 86400" },
-        cache: true,
-        success: function (res) {
-            if(res.isSuccess) {
-                $('#category').empty();
-                $.each(res.data.categories, function(){
-                    content += '<li class="category col-sm-4">'+
-                                    '<img src="' + this.picture + '" alt="image" class="img-rounded">'+
-                                    '<a href="#" onclick="return false;"><span>' + this.name + '</span></a>'+
-                                '</li>';
-                    list = 	'<option value="' + this._id + '">' + this.name + '</option>';
-    
-                    $('#categoryList').html(content);
-                    $('#category').append(list);
-                })
-            }
-            else console.log(res.message);
-        },
-        error: function (err) {
-            console.log(err);
+        cache: true
+    })
+    .done(function (res) {
+        if(res.isSuccess) {
+            $('#category').empty();
+            $.each(res.data.categories, function(){
+                content += '<li class="category col-sm-4">'+
+                                '<img src="' + this.picture + '" alt="image" class="img-rounded">'+
+                                '<a href="#" onclick="return false;"><span>' + this.name + '</span></a>'+
+                            '</li>';
+                list = 	'<option value="' + this._id + '">' + this.name + '</option>';
+
+                $('#categoryList').html(content);
+                $('#category').append(list);
+            })
         }
+        else console.log(res.message);
+    })
+    .fail(function (err) {
+        console.log(err);
     });
 }
 
 function getEvents() {
     $.ajax({
         type: "GET",
-        url: "api/events",
-        contentType: 'application/json; charset=utf-8',
-        success: function (res) {
-            var content = '';
-            if(res.isSuccess) {
-                $.each(res.data.events, function(){
-                    content += '<li style="cursor:pointer; margin: 10px" onclick="getEventDetail(\'' + this.id + '\')">' +
-                                    '<div class="date">' +
-                                        '<a href="#">' +
-                                            '<span class="day">' + this.day + '</span>' +
-                                            '<span class="month">' + this.month + '</span>' +
-                                            '<span class="year">' + this.year + '</span>' +
-                                        '</a>' +
-                                    '</div>' +
+        url: "api/events"
+    })
+    .done(function (res) {
+        var content = '';
+        if(res.isSuccess) {
+            $.each(res.data.events, function(){
+                content += '<li style="cursor:pointer; margin: 10px" onclick="getEventDetail(\'' + this.id + '\')">' +
+                                '<div class="date">' +
                                     '<a href="#">' +
-                                        '<img src="' + this.photo + '" alt="image">' +
+                                        '<span class="day">' + this.day + '</span>' +
+                                        '<span class="month">' + this.month + '</span>' +
+                                        '<span class="year">' + this.year + '</span>' +
                                     '</a>' +
-                                    '<div class="info">' +
-                                        '<p>' + this.title + ' <span>' + this.city + '</span></p>' +
-                                    '</div>' +
-                                '</li>';
+                                '</div>' +
+                                '<a href="#">' +
+                                    '<img src="' + this.photo + '" alt="image">' +
+                                '</a>' +
+                                '<div class="info">' +
+                                    '<p>' + this.title + ' <span>' + this.city + '</span></p>' +
+                                '</div>' +
+                            '</li>';
 
-                    document.getElementById("eventsPanel").innerHTML = content;
-                })
-            }
-        },
-        error: function (err) {
-            document.getElementById('login-error-label').innerHTML = "An error occured, please try again.";
+                document.getElementById("eventsPanel").innerHTML = content;
+            })
         }
+    })
+    .fail(function (err) {
+        document.getElementById('login-error-label').innerHTML = "An error occured, please try again.";
     });
 }
 
 function getEventDetail(id) {
     $.ajax({
         type: "GET",
-        url: "/api/eventDetail/" + id,
-        contentType: 'application/json; charset=utf-8',
-        success: function (res) {
-            var display = "none";
-            if(res.isSuccess) {
-                if(res.data.userId == sessionStorage.id) display = "block";
-                content = '<div class="modal-header">' +
-                            '<button type="button" class="close" data-dismiss="modal">&times;</button>' +
-                            '<h4 class="modal-title">' + res.data.title + '</h4>' +
+        url: "/api/eventDetail/" + id
+    })
+    .done(function (res) {
+        var display = "none";
+        if(res.isSuccess) {
+            if(res.data.userId == sessionStorage.id) display = "block";
+            content = '<div class="modal-header">' +
+                        '<button type="button" class="close" data-dismiss="modal">&times;</button>' +
+                        '<h4 class="modal-title">' + res.data.title + '</h4>' +
+                    '</div>' +
+                    '<div class="modal-body">' +
+                        '<img class="col-12 col-md-4" src="' + res.data.photo + '" alt="image">' +
+
+                        '<p style="font-weight: bold; font-size: 20px; margin:0">' + res.data.title + '-' + res.data.userName + '</p>' +
+                        '<p style="margin:0">' + res.data.start + '</p>' +
+                        '<p style="margin:0">' + res.data.address + '</p>' +
+
+                        '<div col-12 col-md-12>' + 
+                            '<p style="margin: 10px; margin-top: 30px">' + res.data.content + '</p>' +
                         '</div>' +
-                        '<div class="modal-body">' +
-                            '<img class="col-12 col-md-4" src="' + res.data.photo + '" alt="image">' +
-    
-                            '<p style="font-weight: bold; font-size: 20px; margin:0">' + res.data.title + '-' + res.data.userName + '</p>' +
-                            '<p style="margin:0">' + res.data.start + '</p>' +
-                            '<p style="margin:0">' + res.data.address + '</p>' +
-    
-                            '<div col-12 col-md-12>' + 
-                                '<p style="margin: 10px; margin-top: 30px">' + res.data.content + '</p>' +
-                            '</div>' +
-                        '</div>' +
-                        '<div class="modal-footer">' +
-                            '<button type="button" class="btn btn-danger btn-default pull-left" style="margin-left: 10px; display: ' + display + '" onclick="deleteEvent(\'' + res.data.id + '\');"><span class="glyphicon glyphicon-trash"></span> Delete</button>' +
-                            '<button type="submit" class="btn btn-primary btn-default pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>' +
-                        '</div>';
-    
-                document.getElementById("eventDetail").innerHTML = content;
-                $('#eventDetailModal').modal();
-            }
-        },
-        error: function (err) {
-            console.log(err);
+                    '</div>' +
+                    '<div class="modal-footer">' +
+                        '<button type="button" class="btn btn-danger btn-default pull-left" style="margin-left: 10px; display: ' + display + '" onclick="deleteEvent(\'' + res.data.id + '\');"><span class="glyphicon glyphicon-trash"></span> Delete</button>' +
+                        '<button type="submit" class="btn btn-primary btn-default pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>' +
+                    '</div>';
+
+            document.getElementById("eventDetail").innerHTML = content;
+            $('#eventDetailModal').modal();
         }
+    })
+    .fail(function (err) {
+        console.log(err);
     });
 }
 
@@ -281,18 +272,17 @@ function deleteEvent(id) {
     $.ajax({
         type: "POST",
         url: "api/events/" + id,
-        headers: { "authorization": localStorage.getItem("token") },
-        contentType: 'application/json; charset=utf-8',
-        success: function (res) {
-            if (res.isSuccess) {
-                $('#eventDetailModal').modal('hide');
-                getEvents();
-            }
-            else console.log(res.message);
-        },
-        error: function (err) {
-            console.log(err);
+        headers: { "authorization": localStorage.getItem("token") }
+    })
+    .done(function (res) {
+        if (res.isSuccess) {
+            $('#eventDetailModal').modal('hide');
+            getEvents();
         }
+        else console.log(res.message);
+    })
+    .fail(function (err) {
+        console.log(err);
     });
 }
 
@@ -317,49 +307,48 @@ function addEvent() {
             data: formData,
             cache: false,
             contentType: false,
-            processData: false,
-            success: function(response) {
-                photo = response.message;
+            processData: false
+        })
+        .done(function(response) {
+            photo = response.message;
 
-                var body = {
-                    title: eventName,
-                    start: start,
-                    city: city,
-                    town: town,
-                    fullAddress: fullAddress,
-                    photo: photo,
-                    content: content,
-                    user: {
-                        id: sessionStorage.id,
-                        userName: sessionStorage.name
-                    },
-                    category: {
-                        id: categoryId,
-                        categoryName: categoryName
-                    }
+            var body = {
+                title: eventName,
+                start: start,
+                city: city,
+                town: town,
+                fullAddress: fullAddress,
+                photo: photo,
+                content: content,
+                user: {
+                    id: sessionStorage.id,
+                    userName: sessionStorage.name
+                },
+                category: {
+                    id: categoryId,
+                    categoryName: categoryName
                 }
-
-                $.ajax({
-                    type: "POST",
-                    data: body,
-                    url: "api/events",
-                    contentType: 'application/json; charset=utf-8',
-                    success: function (res) {
-                        if (res.isSuccess) {
-                            document.getElementById('add-error-label').innerHTML = "";
-                            clearAddEventForm();
-                            getEvents();
-                        }
-                        else document.getElementById('add-error-label').innerHTML = res.message;
-                    },
-                    error: function (err) {
-                        document.getElementById('add-error-label').innerHTML = "An error occured, please try again.";
-                    }
-                });
-            },
-            error: function(jqXHR, textStatus, errorMessage) {
-                document.getElementById('add-error-label').innerHTML = errorMessage;
             }
+
+            $.ajax({
+                type: "POST",
+                data: body,
+                url: "api/events"
+            })
+            .done(function (res) {
+                if (res.isSuccess) {
+                    document.getElementById('add-error-label').innerHTML = "";
+                    clearAddEventForm();
+                    getEvents();
+                }
+                else document.getElementById('add-error-label').innerHTML = res.message;
+            })
+            .fail(function (err) {
+                document.getElementById('add-error-label').innerHTML = "An error occured, please try again.";
+            });
+        })
+        .fail(function(jqXHR, textStatus, errorMessage) {
+            document.getElementById('add-error-label').innerHTML = errorMessage;
         });
     }
     else {
