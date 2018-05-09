@@ -333,7 +333,8 @@ function addEvent() {
             $.ajax({
                 type: "POST",
                 data: body,
-                url: "api/events"
+                url: "api/events",
+                headers: { "authorization": localStorage.getItem("token") }
             })
             .done(function (res) {
                 if (res.isSuccess) {

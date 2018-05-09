@@ -89,48 +89,63 @@ exports.eventDetail = function (req, res) {
 }
 
 exports.deleteEvent = function (req, res) {
+    var userId = null;
     var token = req.headers['authorization'];
 
-    Event.findOneAndUpdate({_id: ObjectId(req.params.id)}, { $set: { isDeleted: true }}, null, function (err, response) {
-        if (err) return res.status(500).send({
-            isSuccess: false,
-            message: 'Error on the server.'
-        });
+    jwt.verify(token, config.secret, function(err, decoded) {      
+        if (err) 
+          return res.status(500).send({ isSuccess: false, message: 'Failed to authenticate token.' });    
+        userId = decoded.id;
 
-        res.set({'Cache-Control': 'no-cache'}).status(200).send({ isSuccess: true, message: "Event deleted successfully." });
+        Event.findOneAndUpdate({_id: ObjectId(req.params.id)}, { $set: { isDeleted: true }}, null, function (err, response) {
+            if (err) return res.status(500).send({
+                isSuccess: false,
+                message: 'Error on the server.'
+            });
+            res.set({'Cache-Control': 'no-cache'}).status(200).send({ isSuccess: true, message: "Event deleted successfully." });
+        });
     });
 }
 
 exports.addEvent = function (req, res) {
-    var event = new Event({ 
-        title: req.body.title, 
-        createDate: moment().format(),
-        photo: req.body.photo,
-        address: {
-            city: req.body.city,
-            town: req.body.town,
-            fullAddress: req.body.fullAddress
-        },
-        user: {
-            id: ObjectId(req.body.user.id),
-            name: req.body.user.userName
-        },
-        start: req.body.start,
-        content: req.body.content,
-        category: {
-            id: ObjectId(req.body.category.id),
-            name: req.body.category.categoryName
-        },
-        isDeleted: false
-    });
+    var userId = null;
+    var token = req.headers['authorization'];
 
-    event.save( function (err) {
-        if (err) return res.status(500).send({
-            isSuccess: false,
-            message: 'Error on the server.'
+    jwt.verify(token, config.secret, function(err, decoded) {     
+        if (err) 
+          return res.status(500).send({ isSuccess: false, message: 'Failed to authenticate token.' });    
+        userId = decoded.id;
+        
+        var event = new Event({ 
+            title: req.body.title, 
+            createDate: moment().format(),
+            photo: req.body.photo,
+            address: {
+                city: req.body.city,
+                town: req.body.town,
+                fullAddress: req.body.fullAddress
+            },
+            user: {
+                id: ObjectId(userId),
+                name: req.body.user.userName
+            },
+            start: req.body.start,
+            content: req.body.content,
+            category: {
+                id: ObjectId(req.body.category.id),
+                name: req.body.category.categoryName
+            },
+            isDeleted: false
         });
 
-        res.set({'Cache-Control': 'no-cache'}).status(200).send({ isSuccess: true, message: "Event added successfully." });
+        event.save( function (err) {
+            if (err) return res.status(500).send({
+                isSuccess: false,
+                message: 'Error on the server.'
+            });
+
+            res.set({'Cache-Control': 'no-cache'}).status(200).send({ isSuccess: true, message: "Event added successfully." });
+        });
     });
 };
 
