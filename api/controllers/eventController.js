@@ -148,4 +148,3 @@ exports.addEvent = function (req, res) {
         });
     });
 };
-

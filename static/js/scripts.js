@@ -341,6 +341,7 @@ function addEvent() {
                     document.getElementById('add-error-label').innerHTML = "";
                     clearAddEventForm();
                     getEvents();
+                    alert("Your event is added.");
                 }
                 else document.getElementById('add-error-label').innerHTML = res.message;
             })
