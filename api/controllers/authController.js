@@ -33,9 +33,8 @@ exports.register = function (req, res) {
                     });
                 });
             });
-        } else {
-            res.set({'Cache-Control': 'no-cache'}).status(200).send({ isSuccess: false, message: "This email is already registered. Please try a different email address or login." });
         }
+        res.set({'Cache-Control': 'no-cache'}).status(200).send({ isSuccess: false, message: "This email is already registered. Please try a different email address or login." });
     });
 }
 
